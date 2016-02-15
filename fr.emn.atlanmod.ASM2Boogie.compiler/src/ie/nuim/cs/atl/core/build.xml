@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<project name="atlcopy" default="run" basedir=".">
+    <property name="in1"  value="transformation.atl"/>
+    <property name="out1" value="transformation.xmi"/>
+
+    <property name="atl.launcher" value="EMF-specific VM" />
+
+    <target name="run">
+        <atl.loadModel modelHandler="EMF" name="ATL" metamodel="MOF" path="../MetaModels/ATL.ecore" />
+        <atl.loadModel name="atl1" metamodel="ATL" path="${in1}">
+            <injector name="ATL" />
+        </atl.loadModel>
+        <atl.saveModel model="atl1" path="${out1}"/>
+    </target>
+</project>

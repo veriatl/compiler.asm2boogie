@@ -1,0 +1,1238 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:atl="http://www.eclipse.org/gmt/2005/ATL" xmlns:ocl="http://www.eclipse.org/gmt/2005/OCL">
+  <atl:Module location="1:1-154:72" name="HSM2FSM">
+    <inModels location="3:23-3:31" name="IN" metamodel="/2"/>
+    <outModels location="3:8-3:17" name="OUT" metamodel="/1"/>
+    <elements xsi:type="atl:Helper" location="5:1-6:33">
+      <commentsAfter>--PRECONDITION HSM</commentsAfter>
+      <commentsAfter>--@pre</commentsAfter>
+      <definition location="5:8-6:32">
+        <feature xsi:type="ocl:Operation" location="5:38-6:32" name="test">
+          <returnType xsi:type="ocl:BooleanType" location="5:46-5:53"/>
+          <body xsi:type="ocl:IteratorExp" location="6:3-6:32" name="select">
+            <source xsi:type="ocl:VariableExp" location="6:3-6:7" referredVariable="/3"/>
+            <body xsi:type="ocl:NavigationOrAttributeCallExp" location="6:21-6:31" name="isKey">
+              <source xsi:type="ocl:VariableExp" location="6:21-6:25" referredVariable="/0/@elements.0/@definition/@feature/@body/@iterators.0"/>
+            </body>
+            <iterators location="6:16-6:20" varName="attr" variableExp="/0/@elements.0/@definition/@feature/@body/@body/@source"/>
+          </body>
+        </feature>
+        <context_ location="5:8-5:32">
+          <context_ xsi:type="ocl:OclModelElement" location="5:16-5:32" name="StateMachine" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="11:1-12:84">
+      <commentsBefore>--PRECONDITION HSM</commentsBefore>
+      <commentsBefore>--@pre</commentsBefore>
+      <commentsAfter>--@pre  </commentsAfter>
+      <definition location="11:8-12:83">
+        <feature xsi:type="ocl:Operation" location="11:38-12:83" name="unique_hsm_sm_names">
+          <returnType xsi:type="ocl:BooleanType" location="11:61-11:68"/>
+          <body xsi:type="ocl:IteratorExp" location="12:3-12:83" name="forAll">
+            <commentsBefore>-- different state machines have different names</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="12:3-12:34" operationName="allInstances">
+              <commentsBefore>-- different state machines have different names</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="12:3-12:19" name="StateMachine" model="/2">
+                <commentsBefore>-- different state machines have different names</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="12:51-12:82" operationName="implies">
+              <source xsi:type="ocl:OperatorCallExp" location="12:51-12:57" operationName="&lt;>">
+                <source xsi:type="ocl:VariableExp" location="12:51-12:53" referredVariable="/0/@elements.1/@definition/@feature/@body/@iterators.0"/>
+                <arguments xsi:type="ocl:VariableExp" location="12:55-12:57" referredVariable="/0/@elements.1/@definition/@feature/@body/@iterators.1"/>
+              </source>
+              <arguments xsi:type="ocl:OperatorCallExp" location="12:66-12:82" operationName="&lt;>">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="12:66-12:73" name="name">
+                  <source xsi:type="ocl:VariableExp" location="12:66-12:68" referredVariable="/0/@elements.1/@definition/@feature/@body/@iterators.0"/>
+                </source>
+                <arguments xsi:type="ocl:NavigationOrAttributeCallExp" location="12:75-12:82" name="name">
+                  <source xsi:type="ocl:VariableExp" location="12:75-12:77" referredVariable="/0/@elements.1/@definition/@feature/@body/@iterators.1"/>
+                </arguments>
+              </arguments>
+            </body>
+            <iterators location="12:43-12:45" varName="s1" variableExp="/0/@elements.1/@definition/@feature/@body/@body/@source/@source /0/@elements.1/@definition/@feature/@body/@body/@arguments.0/@source/@source"/>
+            <iterators location="12:46-12:48" varName="s2" variableExp="/0/@elements.1/@definition/@feature/@body/@body/@source/@arguments.0 /0/@elements.1/@definition/@feature/@body/@body/@arguments.0/@arguments.0/@source"/>
+          </body>
+        </feature>
+        <context_ location="11:8-11:32">
+          <context_ xsi:type="ocl:OclModelElement" location="11:16-11:32" name="StateMachine" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="15:1-16:85">
+      <commentsBefore>--@pre  </commentsBefore>
+      <commentsAfter>--@pre  </commentsAfter>
+      <definition location="15:8-16:84">
+        <feature xsi:type="ocl:Operation" location="15:39-16:84" name="unique_hsm_state_names">
+          <returnType xsi:type="ocl:BooleanType" location="15:65-15:72"/>
+          <body xsi:type="ocl:IteratorExp" location="16:3-16:84" name="forAll">
+            <commentsBefore>-- states have unique names</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="16:3-16:35" operationName="allInstances">
+              <commentsBefore>-- states have unique names</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="16:3-16:20" name="AbstractState" model="/2">
+                <commentsBefore>-- states have unique names</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="16:52-16:83" operationName="implies">
+              <source xsi:type="ocl:OperatorCallExp" location="16:52-16:58" operationName="&lt;>">
+                <source xsi:type="ocl:VariableExp" location="16:52-16:54" referredVariable="/0/@elements.2/@definition/@feature/@body/@iterators.0"/>
+                <arguments xsi:type="ocl:VariableExp" location="16:56-16:58" referredVariable="/0/@elements.2/@definition/@feature/@body/@iterators.1"/>
+              </source>
+              <arguments xsi:type="ocl:OperatorCallExp" location="16:67-16:83" operationName="&lt;>">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="16:67-16:74" name="name">
+                  <source xsi:type="ocl:VariableExp" location="16:67-16:69" referredVariable="/0/@elements.2/@definition/@feature/@body/@iterators.0"/>
+                </source>
+                <arguments xsi:type="ocl:NavigationOrAttributeCallExp" location="16:76-16:83" name="name">
+                  <source xsi:type="ocl:VariableExp" location="16:76-16:78" referredVariable="/0/@elements.2/@definition/@feature/@body/@iterators.1"/>
+                </arguments>
+              </arguments>
+            </body>
+            <iterators location="16:44-16:46" varName="s1" variableExp="/0/@elements.2/@definition/@feature/@body/@body/@source/@source /0/@elements.2/@definition/@feature/@body/@body/@arguments.0/@source/@source"/>
+            <iterators location="16:47-16:49" varName="s2" variableExp="/0/@elements.2/@definition/@feature/@body/@body/@source/@arguments.0 /0/@elements.2/@definition/@feature/@body/@body/@arguments.0/@arguments.0/@source"/>
+          </body>
+        </feature>
+        <context_ location="15:8-15:33">
+          <context_ xsi:type="ocl:OclModelElement" location="15:16-15:33" name="AbstractState" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="19:1-20:85">
+      <commentsBefore>--@pre  </commentsBefore>
+      <commentsAfter>--@pre  </commentsAfter>
+      <definition location="19:8-20:84">
+        <feature xsi:type="ocl:Operation" location="19:39-20:84" name="hsm_state_multi_lower">
+          <returnType xsi:type="ocl:BooleanType" location="19:64-19:71"/>
+          <body xsi:type="ocl:IteratorExp" location="20:3-20:84" name="forAll">
+            <commentsBefore>-- a state does belong to at least one state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="20:3-20:35" operationName="allInstances">
+              <commentsBefore>-- a state does belong to at least one state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="20:3-20:20" name="AbstractState" model="/2">
+                <commentsBefore>-- a state does belong to at least one state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="20:48-20:83" operationName="not">
+              <source xsi:type="ocl:OperationCallExp" location="20:52-20:83" operationName="oclIsUndefined">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="20:52-20:66" name="stateMachine">
+                  <source xsi:type="ocl:VariableExp" location="20:52-20:53" referredVariable="/0/@elements.3/@definition/@feature/@body/@iterators.0"/>
+                </source>
+              </source>
+            </body>
+            <iterators location="20:44-20:45" varName="s" variableExp="/0/@elements.3/@definition/@feature/@body/@body/@source/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="19:8-19:33">
+          <context_ xsi:type="ocl:OclModelElement" location="19:16-19:33" name="AbstractState" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="23:1-26:67">
+      <commentsBefore>--@pre  </commentsBefore>
+      <commentsAfter>--@pre	  </commentsAfter>
+      <definition location="23:8-26:66">
+        <feature xsi:type="ocl:Operation" location="23:39-26:66" name="hsm_state_multi_upper">
+          <returnType xsi:type="ocl:BooleanType" location="23:64-23:71"/>
+          <body xsi:type="ocl:IteratorExp" location="24:3-26:66" name="forAll">
+            <commentsBefore>-- a state does belong to at most one state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="24:3-24:35" operationName="allInstances">
+              <commentsBefore>-- a state does belong to at most one state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="24:3-24:20" name="AbstractState" model="/2">
+                <commentsBefore>-- a state does belong to at most one state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="25:5-26:65" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="25:5-25:36" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="25:5-25:21" name="StateMachine" model="/2"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="26:7-26:64" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="26:7-26:48" operationName="and">
+                  <source xsi:type="ocl:OperatorCallExp" location="26:7-26:25" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="26:7-26:21" name="stateMachine">
+                      <source xsi:type="ocl:VariableExp" location="26:7-26:8" referredVariable="/0/@elements.4/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="26:22-26:25" referredVariable="/0/@elements.4/@definition/@feature/@body/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:OperatorCallExp" location="26:30-26:48" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="26:30-26:44" name="stateMachine">
+                      <source xsi:type="ocl:VariableExp" location="26:30-26:31" referredVariable="/0/@elements.4/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="26:45-26:48" referredVariable="/0/@elements.4/@definition/@feature/@body/@body/@iterators.1"/>
+                  </arguments>
+                </source>
+                <arguments xsi:type="ocl:OperatorCallExp" location="26:57-26:64" operationName="=">
+                  <source xsi:type="ocl:VariableExp" location="26:57-26:60" referredVariable="/0/@elements.4/@definition/@feature/@body/@body/@iterators.0"/>
+                  <arguments xsi:type="ocl:VariableExp" location="26:61-26:64" referredVariable="/0/@elements.4/@definition/@feature/@body/@body/@iterators.1"/>
+                </arguments>
+              </body>
+              <iterators location="25:45-25:48" varName="sm1" variableExp="/0/@elements.4/@definition/@feature/@body/@body/@body/@source/@source/@arguments.0 /0/@elements.4/@definition/@feature/@body/@body/@body/@arguments.0/@source"/>
+              <iterators location="25:49-25:52" varName="sm2" variableExp="/0/@elements.4/@definition/@feature/@body/@body/@body/@source/@arguments.0/@arguments.0 /0/@elements.4/@definition/@feature/@body/@body/@body/@arguments.0/@arguments.0"/>
+            </body>
+            <iterators location="24:44-24:45" varName="s" variableExp="/0/@elements.4/@definition/@feature/@body/@body/@body/@source/@source/@source/@source /0/@elements.4/@definition/@feature/@body/@body/@body/@source/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="23:8-23:33">
+          <context_ xsi:type="ocl:OclModelElement" location="23:16-23:33" name="AbstractState" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="29:1-31:94">
+      <commentsBefore>--@pre	  </commentsBefore>
+      <commentsAfter>--@pre</commentsAfter>
+      <definition location="29:8-31:93">
+        <feature xsi:type="ocl:Operation" location="29:39-31:93" name="hsm_transition_composite_upper">
+          <returnType xsi:type="ocl:BooleanType" location="29:73-29:80"/>
+          <body xsi:type="ocl:IteratorExp" location="30:3-31:93" name="forAll">
+            <commentsBefore>-- at most one compositeState</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="30:3-30:35" operationName="allInstances">
+              <commentsBefore>-- at most one compositeState</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="30:3-30:20" name="AbstractState" model="/2">
+                <commentsBefore>-- at most one compositeState</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="31:5-31:92" operationName="implies">
+              <source xsi:type="ocl:OperatorCallExp" location="31:5-31:78" operationName="and">
+                <source xsi:type="ocl:OperationCallExp" location="31:5-31:39" operationName="OclIsTypeOf">
+                  <source xsi:type="ocl:VariableExp" location="31:5-31:7" referredVariable="/0/@elements.5/@definition/@feature/@body/@iterators.0"/>
+                  <arguments xsi:type="ocl:OclModelElement" location="31:20-31:38" name="CompositeState" model="/2"/>
+                </source>
+                <arguments xsi:type="ocl:OperationCallExp" location="31:44-31:78" operationName="OclIsTypeOf">
+                  <source xsi:type="ocl:VariableExp" location="31:44-31:46" referredVariable="/0/@elements.5/@definition/@feature/@body/@iterators.1"/>
+                  <arguments xsi:type="ocl:OclModelElement" location="31:59-31:77" name="CompositeState" model="/2"/>
+                </arguments>
+              </source>
+              <arguments xsi:type="ocl:OperatorCallExp" location="31:87-31:92" operationName="=">
+                <source xsi:type="ocl:VariableExp" location="31:87-31:89" referredVariable="/0/@elements.5/@definition/@feature/@body/@iterators.0"/>
+                <arguments xsi:type="ocl:VariableExp" location="31:90-31:92" referredVariable="/0/@elements.5/@definition/@feature/@body/@iterators.1"/>
+              </arguments>
+            </body>
+            <iterators location="30:44-30:46" varName="c1" variableExp="/0/@elements.5/@definition/@feature/@body/@body/@source/@source/@source /0/@elements.5/@definition/@feature/@body/@body/@arguments.0/@source"/>
+            <iterators location="30:47-30:49" varName="c2" variableExp="/0/@elements.5/@definition/@feature/@body/@body/@source/@arguments.0/@source /0/@elements.5/@definition/@feature/@body/@body/@arguments.0/@arguments.0"/>
+          </body>
+        </feature>
+        <context_ location="29:8-29:33">
+          <context_ xsi:type="ocl:OclModelElement" location="29:16-29:33" name="AbstractState" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="34:1-35:82">
+      <commentsBefore>--@pre</commentsBefore>
+      <commentsAfter>--@pre  </commentsAfter>
+      <definition location="34:8-35:81">
+        <feature xsi:type="ocl:Operation" location="34:36-35:81" name="hsm_transition_multi_lower">
+          <returnType xsi:type="ocl:BooleanType" location="34:66-34:73"/>
+          <body xsi:type="ocl:IteratorExp" location="35:3-35:81" name="forAll">
+            <commentsBefore>-- a transition does belong to at least one state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="35:3-35:32" operationName="allInstances">
+              <commentsBefore>-- a transition does belong to at least one state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="35:3-35:17" name="Transition" model="/2">
+                <commentsBefore>-- a transition does belong to at least one state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="35:45-35:80" operationName="not">
+              <source xsi:type="ocl:OperationCallExp" location="35:49-35:80" operationName="oclIsUndefined">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="35:49-35:63" name="stateMachine">
+                  <source xsi:type="ocl:VariableExp" location="35:49-35:50" referredVariable="/0/@elements.6/@definition/@feature/@body/@iterators.0"/>
+                </source>
+              </source>
+            </body>
+            <iterators location="35:41-35:42" varName="t" variableExp="/0/@elements.6/@definition/@feature/@body/@body/@source/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="34:8-34:30">
+          <context_ xsi:type="ocl:OclModelElement" location="34:16-34:30" name="Transition" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="38:1-41:67">
+      <commentsBefore>--@pre  </commentsBefore>
+      <commentsAfter>--@pre	 </commentsAfter>
+      <definition location="38:8-41:66">
+        <feature xsi:type="ocl:Operation" location="38:36-41:66" name="hsm_transition_multi_upper">
+          <returnType xsi:type="ocl:BooleanType" location="38:66-38:73"/>
+          <body xsi:type="ocl:IteratorExp" location="39:3-41:66" name="forAll">
+            <commentsBefore>-- a transition does belong to at most one state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="39:3-39:32" operationName="allInstances">
+              <commentsBefore>-- a transition does belong to at most one state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="39:3-39:17" name="Transition" model="/2">
+                <commentsBefore>-- a transition does belong to at most one state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="40:5-41:65" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="40:5-40:36" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="40:5-40:21" name="StateMachine" model="/2"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="41:7-41:64" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="41:7-41:48" operationName="and">
+                  <source xsi:type="ocl:OperatorCallExp" location="41:7-41:25" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="41:7-41:21" name="stateMachine">
+                      <source xsi:type="ocl:VariableExp" location="41:7-41:8" referredVariable="/0/@elements.7/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="41:22-41:25" referredVariable="/0/@elements.7/@definition/@feature/@body/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:OperatorCallExp" location="41:30-41:48" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="41:30-41:44" name="stateMachine">
+                      <source xsi:type="ocl:VariableExp" location="41:30-41:31" referredVariable="/0/@elements.7/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="41:45-41:48" referredVariable="/0/@elements.7/@definition/@feature/@body/@body/@iterators.1"/>
+                  </arguments>
+                </source>
+                <arguments xsi:type="ocl:OperatorCallExp" location="41:57-41:64" operationName="=">
+                  <source xsi:type="ocl:VariableExp" location="41:57-41:60" referredVariable="/0/@elements.7/@definition/@feature/@body/@body/@iterators.0"/>
+                  <arguments xsi:type="ocl:VariableExp" location="41:61-41:64" referredVariable="/0/@elements.7/@definition/@feature/@body/@body/@iterators.1"/>
+                </arguments>
+              </body>
+              <iterators location="40:45-40:48" varName="sm1" variableExp="/0/@elements.7/@definition/@feature/@body/@body/@body/@source/@source/@arguments.0 /0/@elements.7/@definition/@feature/@body/@body/@body/@arguments.0/@source"/>
+              <iterators location="40:49-40:52" varName="sm2" variableExp="/0/@elements.7/@definition/@feature/@body/@body/@body/@source/@arguments.0/@arguments.0 /0/@elements.7/@definition/@feature/@body/@body/@body/@arguments.0/@arguments.0"/>
+            </body>
+            <iterators location="39:41-39:42" varName="t" variableExp="/0/@elements.7/@definition/@feature/@body/@body/@body/@source/@source/@source/@source /0/@elements.7/@definition/@feature/@body/@body/@body/@source/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="38:8-38:30">
+          <context_ xsi:type="ocl:OclModelElement" location="38:16-38:30" name="Transition" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="44:1-45:76">
+      <commentsBefore>--@pre	 </commentsBefore>
+      <commentsAfter>--@pre  </commentsAfter>
+      <definition location="44:8-45:75">
+        <feature xsi:type="ocl:Operation" location="44:36-45:75" name="hsm_transition_src_multi_lower">
+          <returnType xsi:type="ocl:BooleanType" location="44:70-44:77"/>
+          <body xsi:type="ocl:IteratorExp" location="45:3-45:75" name="forAll">
+            <commentsBefore>-- a transition has at least one source</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="45:3-45:32" operationName="allInstances">
+              <commentsBefore>-- a transition has at least one source</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="45:3-45:17" name="Transition" model="/2">
+                <commentsBefore>-- a transition has at least one source</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="45:45-45:74" operationName="not">
+              <source xsi:type="ocl:OperationCallExp" location="45:49-45:74" operationName="oclIsUndefined">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="45:49-45:57" name="source">
+                  <source xsi:type="ocl:VariableExp" location="45:49-45:50" referredVariable="/0/@elements.8/@definition/@feature/@body/@iterators.0"/>
+                </source>
+              </source>
+            </body>
+            <iterators location="45:41-45:42" varName="t" variableExp="/0/@elements.8/@definition/@feature/@body/@body/@source/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="44:8-44:30">
+          <context_ xsi:type="ocl:OclModelElement" location="44:16-44:30" name="Transition" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="48:1-51:51">
+      <commentsBefore>--@pre  </commentsBefore>
+      <commentsAfter>--@pre</commentsAfter>
+      <definition location="48:8-51:50">
+        <feature xsi:type="ocl:Operation" location="48:36-51:50" name="hsm_transition_src_multi_upper">
+          <returnType xsi:type="ocl:BooleanType" location="48:70-48:77"/>
+          <body xsi:type="ocl:IteratorExp" location="49:3-51:50" name="forAll">
+            <commentsBefore>-- a transition has at most one source</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="49:3-49:32" operationName="allInstances">
+              <commentsBefore>-- a transition has at most one source</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="49:3-49:17" name="Transition" model="/2">
+                <commentsBefore>-- a transition has at most one source</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="50:5-51:49" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="50:5-50:37" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="50:5-50:22" name="AbstractState" model="/2"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="51:7-51:48" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="51:7-51:34" operationName="and">
+                  <source xsi:type="ocl:OperatorCallExp" location="51:7-51:18" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="51:7-51:15" name="source">
+                      <source xsi:type="ocl:VariableExp" location="51:7-51:8" referredVariable="/0/@elements.9/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="51:16-51:18" referredVariable="/0/@elements.9/@definition/@feature/@body/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:OperatorCallExp" location="51:23-51:34" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="51:23-51:31" name="source">
+                      <source xsi:type="ocl:VariableExp" location="51:23-51:24" referredVariable="/0/@elements.9/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="51:32-51:34" referredVariable="/0/@elements.9/@definition/@feature/@body/@body/@iterators.1"/>
+                  </arguments>
+                </source>
+                <arguments xsi:type="ocl:OperatorCallExp" location="51:43-51:48" operationName="=">
+                  <source xsi:type="ocl:VariableExp" location="51:43-51:45" referredVariable="/0/@elements.9/@definition/@feature/@body/@body/@iterators.0"/>
+                  <arguments xsi:type="ocl:VariableExp" location="51:46-51:48" referredVariable="/0/@elements.9/@definition/@feature/@body/@body/@iterators.1"/>
+                </arguments>
+              </body>
+              <iterators location="50:46-50:48" varName="s1" variableExp="/0/@elements.9/@definition/@feature/@body/@body/@body/@source/@source/@arguments.0 /0/@elements.9/@definition/@feature/@body/@body/@body/@arguments.0/@source"/>
+              <iterators location="50:49-50:51" varName="s2" variableExp="/0/@elements.9/@definition/@feature/@body/@body/@body/@source/@arguments.0/@arguments.0 /0/@elements.9/@definition/@feature/@body/@body/@body/@arguments.0/@arguments.0"/>
+            </body>
+            <iterators location="49:41-49:42" varName="t" variableExp="/0/@elements.9/@definition/@feature/@body/@body/@body/@source/@source/@source/@source /0/@elements.9/@definition/@feature/@body/@body/@body/@source/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="48:8-48:30">
+          <context_ xsi:type="ocl:OclModelElement" location="48:16-48:30" name="Transition" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="54:1-55:76">
+      <commentsBefore>--@pre</commentsBefore>
+      <commentsAfter>--@pre  </commentsAfter>
+      <definition location="54:8-55:75">
+        <feature xsi:type="ocl:Operation" location="54:36-55:75" name="hsm_transition_trg_multi_lower">
+          <returnType xsi:type="ocl:BooleanType" location="54:70-54:77"/>
+          <body xsi:type="ocl:IteratorExp" location="55:3-55:75" name="forAll">
+            <commentsBefore>-- a transition has at least one target</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="55:3-55:32" operationName="allInstances">
+              <commentsBefore>-- a transition has at least one target</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="55:3-55:17" name="Transition" model="/2">
+                <commentsBefore>-- a transition has at least one target</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="55:45-55:74" operationName="not">
+              <source xsi:type="ocl:OperationCallExp" location="55:49-55:74" operationName="oclIsUndefined">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="55:49-55:57" name="target">
+                  <source xsi:type="ocl:VariableExp" location="55:49-55:50" referredVariable="/0/@elements.10/@definition/@feature/@body/@iterators.0"/>
+                </source>
+              </source>
+            </body>
+            <iterators location="55:41-55:42" varName="t" variableExp="/0/@elements.10/@definition/@feature/@body/@body/@source/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="54:8-54:30">
+          <context_ xsi:type="ocl:OclModelElement" location="54:16-54:30" name="Transition" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="58:1-61:51">
+      <commentsBefore>--@pre  </commentsBefore>
+      <commentsAfter>--@pre	 </commentsAfter>
+      <definition location="58:8-61:50">
+        <feature xsi:type="ocl:Operation" location="58:36-61:50" name="hsm_transition_trg_multi_upper">
+          <returnType xsi:type="ocl:BooleanType" location="58:70-58:77"/>
+          <body xsi:type="ocl:IteratorExp" location="59:3-61:50" name="forAll">
+            <commentsBefore>-- a transition has at most one target</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="59:3-59:32" operationName="allInstances">
+              <commentsBefore>-- a transition has at most one target</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="59:3-59:17" name="Transition" model="/2">
+                <commentsBefore>-- a transition has at most one target</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="60:5-61:49" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="60:5-60:37" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="60:5-60:22" name="AbstractState" model="/2"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="61:7-61:48" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="61:7-61:34" operationName="and">
+                  <source xsi:type="ocl:OperatorCallExp" location="61:7-61:18" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="61:7-61:15" name="target">
+                      <source xsi:type="ocl:VariableExp" location="61:7-61:8" referredVariable="/0/@elements.11/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="61:16-61:18" referredVariable="/0/@elements.11/@definition/@feature/@body/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:OperatorCallExp" location="61:23-61:34" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="61:23-61:31" name="target">
+                      <source xsi:type="ocl:VariableExp" location="61:23-61:24" referredVariable="/0/@elements.11/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="61:32-61:34" referredVariable="/0/@elements.11/@definition/@feature/@body/@body/@iterators.1"/>
+                  </arguments>
+                </source>
+                <arguments xsi:type="ocl:OperatorCallExp" location="61:43-61:48" operationName="=">
+                  <source xsi:type="ocl:VariableExp" location="61:43-61:45" referredVariable="/0/@elements.11/@definition/@feature/@body/@body/@iterators.0"/>
+                  <arguments xsi:type="ocl:VariableExp" location="61:46-61:48" referredVariable="/0/@elements.11/@definition/@feature/@body/@body/@iterators.1"/>
+                </arguments>
+              </body>
+              <iterators location="60:46-60:48" varName="s1" variableExp="/0/@elements.11/@definition/@feature/@body/@body/@body/@source/@source/@arguments.0 /0/@elements.11/@definition/@feature/@body/@body/@body/@arguments.0/@source"/>
+              <iterators location="60:49-60:51" varName="s2" variableExp="/0/@elements.11/@definition/@feature/@body/@body/@body/@source/@arguments.0/@arguments.0 /0/@elements.11/@definition/@feature/@body/@body/@body/@arguments.0/@arguments.0"/>
+            </body>
+            <iterators location="59:41-59:42" varName="t" variableExp="/0/@elements.11/@definition/@feature/@body/@body/@body/@source/@source/@source/@source /0/@elements.11/@definition/@feature/@body/@body/@body/@source/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="58:8-58:30">
+          <context_ xsi:type="ocl:OclModelElement" location="58:16-58:30" name="Transition" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="64:1-68:70">
+      <commentsBefore>--@pre	 </commentsBefore>
+      <commentsAfter>--@pre		</commentsAfter>
+      <definition location="64:8-68:69">
+        <feature xsi:type="ocl:Operation" location="64:36-68:69" name="hsm_transition_src_contain_sm">
+          <returnType xsi:type="ocl:BooleanType" location="64:69-64:76"/>
+          <body xsi:type="ocl:IteratorExp" location="65:3-68:69" name="forAll">
+            <commentsBefore>-- transition and source in the same state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="65:3-65:32" operationName="allInstances">
+              <commentsBefore>-- transition and source in the same state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="65:3-65:17" name="Transition" model="/2">
+                <commentsBefore>-- transition and source in the same state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="66:5-68:68" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="66:5-66:37" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="66:5-66:22" name="AbstractState" model="/2"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="67:7-68:67" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="67:7-67:17" operationName="=">
+                  <source xsi:type="ocl:NavigationOrAttributeCallExp" location="67:7-67:15" name="source">
+                    <source xsi:type="ocl:VariableExp" location="67:7-67:8" referredVariable="/0/@elements.12/@definition/@feature/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:VariableExp" location="67:16-67:17" referredVariable="/0/@elements.12/@definition/@feature/@body/@body/@iterators.0"/>
+                </source>
+                <arguments xsi:type="ocl:IteratorExp" location="67:26-68:67" name="forAll">
+                  <source xsi:type="ocl:OperationCallExp" location="67:26-67:57" operationName="allInstances">
+                    <source xsi:type="ocl:OclModelElement" location="67:26-67:42" name="StateMachine" model="/2"/>
+                  </source>
+                  <body xsi:type="ocl:OperatorCallExp" location="68:9-68:66" operationName="implies">
+                    <source xsi:type="ocl:OperatorCallExp" location="68:9-68:50" operationName="and">
+                      <source xsi:type="ocl:OperatorCallExp" location="68:9-68:27" operationName="=">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="68:9-68:23" name="stateMachine">
+                          <source xsi:type="ocl:VariableExp" location="68:9-68:10" referredVariable="/0/@elements.12/@definition/@feature/@body/@iterators.0"/>
+                        </source>
+                        <arguments xsi:type="ocl:VariableExp" location="68:24-68:27" referredVariable="/0/@elements.12/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.0"/>
+                      </source>
+                      <arguments xsi:type="ocl:OperatorCallExp" location="68:32-68:50" operationName="=">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="68:32-68:46" name="stateMachine">
+                          <source xsi:type="ocl:VariableExp" location="68:32-68:33" referredVariable="/0/@elements.12/@definition/@feature/@body/@body/@iterators.0"/>
+                        </source>
+                        <arguments xsi:type="ocl:VariableExp" location="68:47-68:50" referredVariable="/0/@elements.12/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.1"/>
+                      </arguments>
+                    </source>
+                    <arguments xsi:type="ocl:OperatorCallExp" location="68:59-68:66" operationName="=">
+                      <source xsi:type="ocl:VariableExp" location="68:59-68:62" referredVariable="/0/@elements.12/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.0"/>
+                      <arguments xsi:type="ocl:VariableExp" location="68:63-68:66" referredVariable="/0/@elements.12/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.1"/>
+                    </arguments>
+                  </body>
+                  <iterators location="67:66-67:69" varName="sm1" variableExp="/0/@elements.12/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@source/@arguments.0 /0/@elements.12/@definition/@feature/@body/@body/@body/@arguments.0/@body/@arguments.0/@source"/>
+                  <iterators location="67:70-67:73" varName="sm2" variableExp="/0/@elements.12/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@arguments.0/@arguments.0 /0/@elements.12/@definition/@feature/@body/@body/@body/@arguments.0/@body/@arguments.0/@arguments.0"/>
+                </arguments>
+              </body>
+              <iterators location="66:46-66:47" varName="s" variableExp="/0/@elements.12/@definition/@feature/@body/@body/@body/@source/@arguments.0 /0/@elements.12/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@arguments.0/@source/@source"/>
+            </body>
+            <iterators location="65:41-65:42" varName="t" variableExp="/0/@elements.12/@definition/@feature/@body/@body/@body/@source/@source/@source /0/@elements.12/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@source/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="64:8-64:30">
+          <context_ xsi:type="ocl:OclModelElement" location="64:16-64:30" name="Transition" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="71:1-75:70">
+      <commentsBefore>--@pre		</commentsBefore>
+      <commentsAfter>--@pre</commentsAfter>
+      <definition location="71:8-75:69">
+        <feature xsi:type="ocl:Operation" location="71:36-75:69" name="hsm_transition_trg_contain_sm">
+          <returnType xsi:type="ocl:BooleanType" location="71:69-71:76"/>
+          <body xsi:type="ocl:IteratorExp" location="72:3-75:69" name="forAll">
+            <commentsBefore>-- transition and target in the same state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="72:3-72:32" operationName="allInstances">
+              <commentsBefore>-- transition and target in the same state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="72:3-72:17" name="Transition" model="/2">
+                <commentsBefore>-- transition and target in the same state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="73:5-75:68" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="73:5-73:37" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="73:5-73:22" name="AbstractState" model="/2"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="74:7-75:67" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="74:7-74:17" operationName="=">
+                  <source xsi:type="ocl:NavigationOrAttributeCallExp" location="74:7-74:15" name="target">
+                    <source xsi:type="ocl:VariableExp" location="74:7-74:8" referredVariable="/0/@elements.13/@definition/@feature/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:VariableExp" location="74:16-74:17" referredVariable="/0/@elements.13/@definition/@feature/@body/@body/@iterators.0"/>
+                </source>
+                <arguments xsi:type="ocl:IteratorExp" location="74:26-75:67" name="forAll">
+                  <source xsi:type="ocl:OperationCallExp" location="74:26-74:57" operationName="allInstances">
+                    <source xsi:type="ocl:OclModelElement" location="74:26-74:42" name="StateMachine" model="/2"/>
+                  </source>
+                  <body xsi:type="ocl:OperatorCallExp" location="75:9-75:66" operationName="implies">
+                    <source xsi:type="ocl:OperatorCallExp" location="75:9-75:50" operationName="and">
+                      <source xsi:type="ocl:OperatorCallExp" location="75:9-75:27" operationName="=">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="75:9-75:23" name="stateMachine">
+                          <source xsi:type="ocl:VariableExp" location="75:9-75:10" referredVariable="/0/@elements.13/@definition/@feature/@body/@iterators.0"/>
+                        </source>
+                        <arguments xsi:type="ocl:VariableExp" location="75:24-75:27" referredVariable="/0/@elements.13/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.0"/>
+                      </source>
+                      <arguments xsi:type="ocl:OperatorCallExp" location="75:32-75:50" operationName="=">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="75:32-75:46" name="stateMachine">
+                          <source xsi:type="ocl:VariableExp" location="75:32-75:33" referredVariable="/0/@elements.13/@definition/@feature/@body/@body/@iterators.0"/>
+                        </source>
+                        <arguments xsi:type="ocl:VariableExp" location="75:47-75:50" referredVariable="/0/@elements.13/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.1"/>
+                      </arguments>
+                    </source>
+                    <arguments xsi:type="ocl:OperatorCallExp" location="75:59-75:66" operationName="=">
+                      <source xsi:type="ocl:VariableExp" location="75:59-75:62" referredVariable="/0/@elements.13/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.0"/>
+                      <arguments xsi:type="ocl:VariableExp" location="75:63-75:66" referredVariable="/0/@elements.13/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.1"/>
+                    </arguments>
+                  </body>
+                  <iterators location="74:66-74:69" varName="sm1" variableExp="/0/@elements.13/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@source/@arguments.0 /0/@elements.13/@definition/@feature/@body/@body/@body/@arguments.0/@body/@arguments.0/@source"/>
+                  <iterators location="74:70-74:73" varName="sm2" variableExp="/0/@elements.13/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@arguments.0/@arguments.0 /0/@elements.13/@definition/@feature/@body/@body/@body/@arguments.0/@body/@arguments.0/@arguments.0"/>
+                </arguments>
+              </body>
+              <iterators location="73:46-73:47" varName="s" variableExp="/0/@elements.13/@definition/@feature/@body/@body/@body/@source/@arguments.0 /0/@elements.13/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@arguments.0/@source/@source"/>
+            </body>
+            <iterators location="72:41-72:42" varName="t" variableExp="/0/@elements.13/@definition/@feature/@body/@body/@body/@source/@source/@source /0/@elements.13/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@source/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="71:8-71:30">
+          <context_ xsi:type="ocl:OclModelElement" location="71:16-71:30" name="Transition" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="78:1-82:72">
+      <commentsBefore>--@pre</commentsBefore>
+      <commentsAfter>--POSTCONDITION FSM</commentsAfter>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="78:8-82:71">
+        <feature xsi:type="ocl:Operation" location="78:36-82:71" name="hsm_transition_contain_sm">
+          <returnType xsi:type="ocl:BooleanType" location="78:65-78:72"/>
+          <body xsi:type="ocl:IteratorExp" location="79:3-82:71" name="forAll">
+            <commentsBefore>-- source and target in the same state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="79:3-79:32" operationName="allInstances">
+              <commentsBefore>-- source and target in the same state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="79:3-79:17" name="Transition" model="/2">
+                <commentsBefore>-- source and target in the same state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="80:5-82:70" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="80:5-80:37" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="80:5-80:22" name="AbstractState" model="/2"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="81:7-82:69" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="81:7-81:34" operationName="and">
+                  <source xsi:type="ocl:OperatorCallExp" location="81:7-81:18" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="81:7-81:15" name="source">
+                      <source xsi:type="ocl:VariableExp" location="81:7-81:8" referredVariable="/0/@elements.14/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="81:16-81:18" referredVariable="/0/@elements.14/@definition/@feature/@body/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:OperatorCallExp" location="81:23-81:34" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="81:23-81:31" name="target">
+                      <source xsi:type="ocl:VariableExp" location="81:23-81:24" referredVariable="/0/@elements.14/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="81:32-81:34" referredVariable="/0/@elements.14/@definition/@feature/@body/@body/@iterators.1"/>
+                  </arguments>
+                </source>
+                <arguments xsi:type="ocl:IteratorExp" location="81:43-82:69" name="forAll">
+                  <source xsi:type="ocl:OperationCallExp" location="81:43-81:74" operationName="allInstances">
+                    <source xsi:type="ocl:OclModelElement" location="81:43-81:59" name="StateMachine" model="/2"/>
+                  </source>
+                  <body xsi:type="ocl:OperatorCallExp" location="82:9-82:68" operationName="implies">
+                    <source xsi:type="ocl:OperatorCallExp" location="82:9-82:52" operationName="and">
+                      <source xsi:type="ocl:OperatorCallExp" location="82:9-82:28" operationName="=">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="82:9-82:24" name="stateMachine">
+                          <source xsi:type="ocl:VariableExp" location="82:9-82:11" referredVariable="/0/@elements.14/@definition/@feature/@body/@body/@iterators.0"/>
+                        </source>
+                        <arguments xsi:type="ocl:VariableExp" location="82:25-82:28" referredVariable="/0/@elements.14/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.0"/>
+                      </source>
+                      <arguments xsi:type="ocl:OperatorCallExp" location="82:33-82:52" operationName="=">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="82:33-82:48" name="stateMachine">
+                          <source xsi:type="ocl:VariableExp" location="82:33-82:35" referredVariable="/0/@elements.14/@definition/@feature/@body/@body/@iterators.1"/>
+                        </source>
+                        <arguments xsi:type="ocl:VariableExp" location="82:49-82:52" referredVariable="/0/@elements.14/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.1"/>
+                      </arguments>
+                    </source>
+                    <arguments xsi:type="ocl:OperatorCallExp" location="82:61-82:68" operationName="=">
+                      <source xsi:type="ocl:VariableExp" location="82:61-82:64" referredVariable="/0/@elements.14/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.0"/>
+                      <arguments xsi:type="ocl:VariableExp" location="82:65-82:68" referredVariable="/0/@elements.14/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.1"/>
+                    </arguments>
+                  </body>
+                  <iterators location="81:83-81:86" varName="sm1" variableExp="/0/@elements.14/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@source/@arguments.0 /0/@elements.14/@definition/@feature/@body/@body/@body/@arguments.0/@body/@arguments.0/@source"/>
+                  <iterators location="81:87-81:90" varName="sm2" variableExp="/0/@elements.14/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@arguments.0/@arguments.0 /0/@elements.14/@definition/@feature/@body/@body/@body/@arguments.0/@body/@arguments.0/@arguments.0"/>
+                </arguments>
+              </body>
+              <iterators location="80:46-80:48" varName="s1" variableExp="/0/@elements.14/@definition/@feature/@body/@body/@body/@source/@source/@arguments.0 /0/@elements.14/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@source/@source/@source"/>
+              <iterators location="80:49-80:51" varName="s2" variableExp="/0/@elements.14/@definition/@feature/@body/@body/@body/@source/@arguments.0/@arguments.0 /0/@elements.14/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@arguments.0/@source/@source"/>
+            </body>
+            <iterators location="79:41-79:42" varName="t" variableExp="/0/@elements.14/@definition/@feature/@body/@body/@body/@source/@source/@source/@source /0/@elements.14/@definition/@feature/@body/@body/@body/@source/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="78:8-78:30">
+          <context_ xsi:type="ocl:OclModelElement" location="78:16-78:30" name="Transition" model="/2"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="88:1-89:84">
+      <commentsBefore>--POSTCONDITION FSM</commentsBefore>
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post  </commentsAfter>
+      <definition location="88:8-89:83">
+        <feature xsi:type="ocl:Operation" location="88:38-89:83" name="unique_fsm_sm_names">
+          <returnType xsi:type="ocl:BooleanType" location="88:61-88:68"/>
+          <body xsi:type="ocl:IteratorExp" location="89:3-89:83" name="forAll">
+            <commentsBefore>-- different target state machines have different names</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="89:3-89:34" operationName="allInstances">
+              <commentsBefore>-- different target state machines have different names</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="89:3-89:19" name="StateMachine" model="/1">
+                <commentsBefore>-- different target state machines have different names</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="89:51-89:82" operationName="implies">
+              <source xsi:type="ocl:OperatorCallExp" location="89:51-89:57" operationName="&lt;>">
+                <source xsi:type="ocl:VariableExp" location="89:51-89:53" referredVariable="/0/@elements.15/@definition/@feature/@body/@iterators.0"/>
+                <arguments xsi:type="ocl:VariableExp" location="89:55-89:57" referredVariable="/0/@elements.15/@definition/@feature/@body/@iterators.1"/>
+              </source>
+              <arguments xsi:type="ocl:OperatorCallExp" location="89:66-89:82" operationName="&lt;>">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="89:66-89:73" name="name">
+                  <source xsi:type="ocl:VariableExp" location="89:66-89:68" referredVariable="/0/@elements.15/@definition/@feature/@body/@iterators.0"/>
+                </source>
+                <arguments xsi:type="ocl:NavigationOrAttributeCallExp" location="89:75-89:82" name="name">
+                  <source xsi:type="ocl:VariableExp" location="89:75-89:77" referredVariable="/0/@elements.15/@definition/@feature/@body/@iterators.1"/>
+                </arguments>
+              </arguments>
+            </body>
+            <iterators location="89:43-89:45" varName="s1" variableExp="/0/@elements.15/@definition/@feature/@body/@body/@source/@source /0/@elements.15/@definition/@feature/@body/@body/@arguments.0/@source/@source"/>
+            <iterators location="89:46-89:48" varName="s2" variableExp="/0/@elements.15/@definition/@feature/@body/@body/@source/@arguments.0 /0/@elements.15/@definition/@feature/@body/@body/@arguments.0/@arguments.0/@source"/>
+          </body>
+        </feature>
+        <context_ location="88:8-88:32">
+          <context_ xsi:type="ocl:OclModelElement" location="88:16-88:32" name="StateMachine" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="92:1-93:85">
+      <commentsBefore>--@post  </commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="92:8-93:84">
+        <feature xsi:type="ocl:Operation" location="92:39-93:84" name="unique_fsm_state_names">
+          <returnType xsi:type="ocl:BooleanType" location="92:65-92:72"/>
+          <body xsi:type="ocl:IteratorExp" location="93:3-93:84" name="forAll">
+            <commentsBefore>-- states have unique names</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="93:3-93:35" operationName="allInstances">
+              <commentsBefore>-- states have unique names</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="93:3-93:20" name="AbstractState" model="/1">
+                <commentsBefore>-- states have unique names</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="93:52-93:83" operationName="implies">
+              <source xsi:type="ocl:OperatorCallExp" location="93:52-93:58" operationName="&lt;>">
+                <source xsi:type="ocl:VariableExp" location="93:52-93:54" referredVariable="/0/@elements.16/@definition/@feature/@body/@iterators.0"/>
+                <arguments xsi:type="ocl:VariableExp" location="93:56-93:58" referredVariable="/0/@elements.16/@definition/@feature/@body/@iterators.1"/>
+              </source>
+              <arguments xsi:type="ocl:OperatorCallExp" location="93:67-93:83" operationName="&lt;>">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="93:67-93:74" name="name">
+                  <source xsi:type="ocl:VariableExp" location="93:67-93:69" referredVariable="/0/@elements.16/@definition/@feature/@body/@iterators.0"/>
+                </source>
+                <arguments xsi:type="ocl:NavigationOrAttributeCallExp" location="93:76-93:83" name="name">
+                  <source xsi:type="ocl:VariableExp" location="93:76-93:78" referredVariable="/0/@elements.16/@definition/@feature/@body/@iterators.1"/>
+                </arguments>
+              </arguments>
+            </body>
+            <iterators location="93:44-93:46" varName="s1" variableExp="/0/@elements.16/@definition/@feature/@body/@body/@source/@source /0/@elements.16/@definition/@feature/@body/@body/@arguments.0/@source/@source"/>
+            <iterators location="93:47-93:49" varName="s2" variableExp="/0/@elements.16/@definition/@feature/@body/@body/@source/@arguments.0 /0/@elements.16/@definition/@feature/@body/@body/@arguments.0/@arguments.0/@source"/>
+          </body>
+        </feature>
+        <context_ location="92:8-92:33">
+          <context_ xsi:type="ocl:OclModelElement" location="92:16-92:33" name="AbstractState" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="96:1-97:85">
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="96:8-97:84">
+        <feature xsi:type="ocl:Operation" location="96:39-97:84" name="fsm_state_multi_lower">
+          <returnType xsi:type="ocl:BooleanType" location="96:64-96:71"/>
+          <body xsi:type="ocl:IteratorExp" location="97:3-97:84" name="forAll">
+            <commentsBefore>-- a state does belong to at least one state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="97:3-97:35" operationName="allInstances">
+              <commentsBefore>-- a state does belong to at least one state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="97:3-97:20" name="AbstractState" model="/1">
+                <commentsBefore>-- a state does belong to at least one state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="97:48-97:83" operationName="not">
+              <source xsi:type="ocl:OperationCallExp" location="97:52-97:83" operationName="oclIsUndefined">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="97:52-97:66" name="stateMachine">
+                  <source xsi:type="ocl:VariableExp" location="97:52-97:53" referredVariable="/0/@elements.17/@definition/@feature/@body/@iterators.0"/>
+                </source>
+              </source>
+            </body>
+            <iterators location="97:44-97:45" varName="s" variableExp="/0/@elements.17/@definition/@feature/@body/@body/@source/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="96:8-96:33">
+          <context_ xsi:type="ocl:OclModelElement" location="96:16-96:33" name="AbstractState" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="100:1-103:67">
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="100:8-103:66">
+        <feature xsi:type="ocl:Operation" location="100:39-103:66" name="fsm_state_multi_upper">
+          <returnType xsi:type="ocl:BooleanType" location="100:64-100:71"/>
+          <body xsi:type="ocl:IteratorExp" location="101:3-103:66" name="forAll">
+            <commentsBefore>-- a state does belong to at most one state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="101:3-101:35" operationName="allInstances">
+              <commentsBefore>-- a state does belong to at most one state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="101:3-101:20" name="AbstractState" model="/1">
+                <commentsBefore>-- a state does belong to at most one state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="102:5-103:65" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="102:5-102:36" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="102:5-102:21" name="StateMachine" model="/1"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="103:7-103:64" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="103:7-103:48" operationName="and">
+                  <source xsi:type="ocl:OperatorCallExp" location="103:7-103:25" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="103:7-103:21" name="stateMachine">
+                      <source xsi:type="ocl:VariableExp" location="103:7-103:8" referredVariable="/0/@elements.18/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="103:22-103:25" referredVariable="/0/@elements.18/@definition/@feature/@body/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:OperatorCallExp" location="103:30-103:48" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="103:30-103:44" name="stateMachine">
+                      <source xsi:type="ocl:VariableExp" location="103:30-103:31" referredVariable="/0/@elements.18/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="103:45-103:48" referredVariable="/0/@elements.18/@definition/@feature/@body/@body/@iterators.1"/>
+                  </arguments>
+                </source>
+                <arguments xsi:type="ocl:OperatorCallExp" location="103:57-103:64" operationName="=">
+                  <source xsi:type="ocl:VariableExp" location="103:57-103:60" referredVariable="/0/@elements.18/@definition/@feature/@body/@body/@iterators.0"/>
+                  <arguments xsi:type="ocl:VariableExp" location="103:61-103:64" referredVariable="/0/@elements.18/@definition/@feature/@body/@body/@iterators.1"/>
+                </arguments>
+              </body>
+              <iterators location="102:45-102:48" varName="sm1" variableExp="/0/@elements.18/@definition/@feature/@body/@body/@body/@source/@source/@arguments.0 /0/@elements.18/@definition/@feature/@body/@body/@body/@arguments.0/@source"/>
+              <iterators location="102:49-102:52" varName="sm2" variableExp="/0/@elements.18/@definition/@feature/@body/@body/@body/@source/@arguments.0/@arguments.0 /0/@elements.18/@definition/@feature/@body/@body/@body/@arguments.0/@arguments.0"/>
+            </body>
+            <iterators location="101:44-101:45" varName="s" variableExp="/0/@elements.18/@definition/@feature/@body/@body/@body/@source/@source/@source/@source /0/@elements.18/@definition/@feature/@body/@body/@body/@source/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="100:8-100:33">
+          <context_ xsi:type="ocl:OclModelElement" location="100:16-100:33" name="AbstractState" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="106:1-107:82">
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="106:8-107:81">
+        <feature xsi:type="ocl:Operation" location="106:36-107:81" name="fsm_transition_multi_lower">
+          <returnType xsi:type="ocl:BooleanType" location="106:66-106:73"/>
+          <body xsi:type="ocl:IteratorExp" location="107:3-107:81" name="forAll">
+            <commentsBefore>-- a transition does belong to at least one state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="107:3-107:32" operationName="allInstances">
+              <commentsBefore>-- a transition does belong to at least one state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="107:3-107:17" name="Transition" model="/1">
+                <commentsBefore>-- a transition does belong to at least one state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="107:45-107:80" operationName="not">
+              <source xsi:type="ocl:OperationCallExp" location="107:49-107:80" operationName="oclIsUndefined">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="107:49-107:63" name="stateMachine">
+                  <source xsi:type="ocl:VariableExp" location="107:49-107:50" referredVariable="/0/@elements.19/@definition/@feature/@body/@iterators.0"/>
+                </source>
+              </source>
+            </body>
+            <iterators location="107:41-107:42" varName="t" variableExp="/0/@elements.19/@definition/@feature/@body/@body/@source/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="106:8-106:30">
+          <context_ xsi:type="ocl:OclModelElement" location="106:16-106:30" name="Transition" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="110:1-113:69">
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="110:8-113:66">
+        <feature xsi:type="ocl:Operation" location="110:36-113:66" name="fsm_transition_multi_upper">
+          <returnType xsi:type="ocl:BooleanType" location="110:66-110:73"/>
+          <body xsi:type="ocl:IteratorExp" location="111:3-113:66" name="forAll">
+            <commentsBefore>-- a transition does belong to at most one state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="111:3-111:32" operationName="allInstances">
+              <commentsBefore>-- a transition does belong to at most one state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="111:3-111:17" name="Transition" model="/1">
+                <commentsBefore>-- a transition does belong to at most one state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="112:5-113:65" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="112:5-112:36" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="112:5-112:21" name="StateMachine" model="/1"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="113:7-113:64" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="113:7-113:48" operationName="and">
+                  <source xsi:type="ocl:OperatorCallExp" location="113:7-113:25" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="113:7-113:21" name="stateMachine">
+                      <source xsi:type="ocl:VariableExp" location="113:7-113:8" referredVariable="/0/@elements.20/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="113:22-113:25" referredVariable="/0/@elements.20/@definition/@feature/@body/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:OperatorCallExp" location="113:30-113:48" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="113:30-113:44" name="stateMachine">
+                      <source xsi:type="ocl:VariableExp" location="113:30-113:31" referredVariable="/0/@elements.20/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="113:45-113:48" referredVariable="/0/@elements.20/@definition/@feature/@body/@body/@iterators.1"/>
+                  </arguments>
+                </source>
+                <arguments xsi:type="ocl:OperatorCallExp" location="113:57-113:64" operationName="=">
+                  <source xsi:type="ocl:VariableExp" location="113:57-113:60" referredVariable="/0/@elements.20/@definition/@feature/@body/@body/@iterators.0"/>
+                  <arguments xsi:type="ocl:VariableExp" location="113:61-113:64" referredVariable="/0/@elements.20/@definition/@feature/@body/@body/@iterators.1"/>
+                </arguments>
+              </body>
+              <iterators location="112:45-112:48" varName="sm1" variableExp="/0/@elements.20/@definition/@feature/@body/@body/@body/@source/@source/@arguments.0 /0/@elements.20/@definition/@feature/@body/@body/@body/@arguments.0/@source"/>
+              <iterators location="112:49-112:52" varName="sm2" variableExp="/0/@elements.20/@definition/@feature/@body/@body/@body/@source/@arguments.0/@arguments.0 /0/@elements.20/@definition/@feature/@body/@body/@body/@arguments.0/@arguments.0"/>
+            </body>
+            <iterators location="111:41-111:42" varName="t" variableExp="/0/@elements.20/@definition/@feature/@body/@body/@body/@source/@source/@source/@source /0/@elements.20/@definition/@feature/@body/@body/@body/@source/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="110:8-110:30">
+          <context_ xsi:type="ocl:OclModelElement" location="110:16-110:30" name="Transition" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="116:1-117:76">
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="116:8-117:75">
+        <feature xsi:type="ocl:Operation" location="116:36-117:75" name="fsm_transition_src_multi_lower">
+          <returnType xsi:type="ocl:BooleanType" location="116:70-116:77"/>
+          <body xsi:type="ocl:IteratorExp" location="117:3-117:75" name="forAll">
+            <commentsBefore>-- a transition has at least one source</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="117:3-117:32" operationName="allInstances">
+              <commentsBefore>-- a transition has at least one source</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="117:3-117:17" name="Transition" model="/1">
+                <commentsBefore>-- a transition has at least one source</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="117:45-117:74" operationName="not">
+              <source xsi:type="ocl:OperationCallExp" location="117:49-117:74" operationName="oclIsUndefined">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="117:49-117:57" name="source">
+                  <source xsi:type="ocl:VariableExp" location="117:49-117:50" referredVariable="/0/@elements.21/@definition/@feature/@body/@iterators.0"/>
+                </source>
+              </source>
+            </body>
+            <iterators location="117:41-117:42" varName="t" variableExp="/0/@elements.21/@definition/@feature/@body/@body/@source/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="116:8-116:30">
+          <context_ xsi:type="ocl:OclModelElement" location="116:16-116:30" name="Transition" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="120:1-123:51">
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="120:8-123:50">
+        <feature xsi:type="ocl:Operation" location="120:36-123:50" name="fsm_transition_src_multi_upper">
+          <returnType xsi:type="ocl:BooleanType" location="120:70-120:77"/>
+          <body xsi:type="ocl:IteratorExp" location="121:3-123:50" name="forAll">
+            <commentsBefore>-- a transition has at most one source</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="121:3-121:32" operationName="allInstances">
+              <commentsBefore>-- a transition has at most one source</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="121:3-121:17" name="Transition" model="/1">
+                <commentsBefore>-- a transition has at most one source</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="122:5-123:49" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="122:5-122:37" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="122:5-122:22" name="AbstractState" model="/1"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="123:7-123:48" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="123:7-123:34" operationName="and">
+                  <source xsi:type="ocl:OperatorCallExp" location="123:7-123:18" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="123:7-123:15" name="source">
+                      <source xsi:type="ocl:VariableExp" location="123:7-123:8" referredVariable="/0/@elements.22/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="123:16-123:18" referredVariable="/0/@elements.22/@definition/@feature/@body/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:OperatorCallExp" location="123:23-123:34" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="123:23-123:31" name="source">
+                      <source xsi:type="ocl:VariableExp" location="123:23-123:24" referredVariable="/0/@elements.22/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="123:32-123:34" referredVariable="/0/@elements.22/@definition/@feature/@body/@body/@iterators.1"/>
+                  </arguments>
+                </source>
+                <arguments xsi:type="ocl:OperatorCallExp" location="123:43-123:48" operationName="=">
+                  <source xsi:type="ocl:VariableExp" location="123:43-123:45" referredVariable="/0/@elements.22/@definition/@feature/@body/@body/@iterators.0"/>
+                  <arguments xsi:type="ocl:VariableExp" location="123:46-123:48" referredVariable="/0/@elements.22/@definition/@feature/@body/@body/@iterators.1"/>
+                </arguments>
+              </body>
+              <iterators location="122:46-122:48" varName="s1" variableExp="/0/@elements.22/@definition/@feature/@body/@body/@body/@source/@source/@arguments.0 /0/@elements.22/@definition/@feature/@body/@body/@body/@arguments.0/@source"/>
+              <iterators location="122:49-122:51" varName="s2" variableExp="/0/@elements.22/@definition/@feature/@body/@body/@body/@source/@arguments.0/@arguments.0 /0/@elements.22/@definition/@feature/@body/@body/@body/@arguments.0/@arguments.0"/>
+            </body>
+            <iterators location="121:41-121:42" varName="t" variableExp="/0/@elements.22/@definition/@feature/@body/@body/@body/@source/@source/@source/@source /0/@elements.22/@definition/@feature/@body/@body/@body/@source/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="120:8-120:30">
+          <context_ xsi:type="ocl:OclModelElement" location="120:16-120:30" name="Transition" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="126:1-127:76">
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="126:8-127:75">
+        <feature xsi:type="ocl:Operation" location="126:36-127:75" name="fsm_transition_trg_multi_lower">
+          <returnType xsi:type="ocl:BooleanType" location="126:70-126:77"/>
+          <body xsi:type="ocl:IteratorExp" location="127:3-127:75" name="forAll">
+            <commentsBefore>-- a transition has at least one target</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="127:3-127:32" operationName="allInstances">
+              <commentsBefore>-- a transition has at least one target</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="127:3-127:17" name="Transition" model="/1">
+                <commentsBefore>-- a transition has at least one target</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="127:45-127:74" operationName="not">
+              <source xsi:type="ocl:OperationCallExp" location="127:49-127:74" operationName="oclIsUndefined">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="127:49-127:57" name="target">
+                  <source xsi:type="ocl:VariableExp" location="127:49-127:50" referredVariable="/0/@elements.23/@definition/@feature/@body/@iterators.0"/>
+                </source>
+              </source>
+            </body>
+            <iterators location="127:41-127:42" varName="t" variableExp="/0/@elements.23/@definition/@feature/@body/@body/@source/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="126:8-126:30">
+          <context_ xsi:type="ocl:OclModelElement" location="126:16-126:30" name="Transition" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="130:1-133:51">
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="130:8-133:50">
+        <feature xsi:type="ocl:Operation" location="130:36-133:50" name="fsm_transition_trg_multi_upper">
+          <returnType xsi:type="ocl:BooleanType" location="130:70-130:77"/>
+          <body xsi:type="ocl:IteratorExp" location="131:3-133:50" name="forAll">
+            <commentsBefore>-- a transition has at most one target</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="131:3-131:32" operationName="allInstances">
+              <commentsBefore>-- a transition has at most one target</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="131:3-131:17" name="Transition" model="/1">
+                <commentsBefore>-- a transition has at most one target</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="132:5-133:49" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="132:5-132:37" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="132:5-132:22" name="AbstractState" model="/1"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="133:7-133:48" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="133:7-133:34" operationName="and">
+                  <source xsi:type="ocl:OperatorCallExp" location="133:7-133:18" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="133:7-133:15" name="target">
+                      <source xsi:type="ocl:VariableExp" location="133:7-133:8" referredVariable="/0/@elements.24/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="133:16-133:18" referredVariable="/0/@elements.24/@definition/@feature/@body/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:OperatorCallExp" location="133:23-133:34" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="133:23-133:31" name="target">
+                      <source xsi:type="ocl:VariableExp" location="133:23-133:24" referredVariable="/0/@elements.24/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="133:32-133:34" referredVariable="/0/@elements.24/@definition/@feature/@body/@body/@iterators.1"/>
+                  </arguments>
+                </source>
+                <arguments xsi:type="ocl:OperatorCallExp" location="133:43-133:48" operationName="=">
+                  <source xsi:type="ocl:VariableExp" location="133:43-133:45" referredVariable="/0/@elements.24/@definition/@feature/@body/@body/@iterators.0"/>
+                  <arguments xsi:type="ocl:VariableExp" location="133:46-133:48" referredVariable="/0/@elements.24/@definition/@feature/@body/@body/@iterators.1"/>
+                </arguments>
+              </body>
+              <iterators location="132:46-132:48" varName="s1" variableExp="/0/@elements.24/@definition/@feature/@body/@body/@body/@source/@source/@arguments.0 /0/@elements.24/@definition/@feature/@body/@body/@body/@arguments.0/@source"/>
+              <iterators location="132:49-132:51" varName="s2" variableExp="/0/@elements.24/@definition/@feature/@body/@body/@body/@source/@arguments.0/@arguments.0 /0/@elements.24/@definition/@feature/@body/@body/@body/@arguments.0/@arguments.0"/>
+            </body>
+            <iterators location="131:41-131:42" varName="t" variableExp="/0/@elements.24/@definition/@feature/@body/@body/@body/@source/@source/@source/@source /0/@elements.24/@definition/@feature/@body/@body/@body/@source/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="130:8-130:30">
+          <context_ xsi:type="ocl:OclModelElement" location="130:16-130:30" name="Transition" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="136:1-140:70">
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="136:8-140:69">
+        <feature xsi:type="ocl:Operation" location="136:36-140:69" name="fsm_transition_src_contain_sm">
+          <returnType xsi:type="ocl:BooleanType" location="136:69-136:76"/>
+          <body xsi:type="ocl:IteratorExp" location="137:3-140:69" name="forAll">
+            <commentsBefore>-- transition and source in the same state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="137:3-137:32" operationName="allInstances">
+              <commentsBefore>-- transition and source in the same state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="137:3-137:17" name="Transition" model="/1">
+                <commentsBefore>-- transition and source in the same state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="138:5-140:68" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="138:5-138:37" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="138:5-138:22" name="AbstractState" model="/1"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="139:7-140:67" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="139:7-139:17" operationName="=">
+                  <source xsi:type="ocl:NavigationOrAttributeCallExp" location="139:7-139:15" name="source">
+                    <source xsi:type="ocl:VariableExp" location="139:7-139:8" referredVariable="/0/@elements.25/@definition/@feature/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:VariableExp" location="139:16-139:17" referredVariable="/0/@elements.25/@definition/@feature/@body/@body/@iterators.0"/>
+                </source>
+                <arguments xsi:type="ocl:IteratorExp" location="139:26-140:67" name="forAll">
+                  <source xsi:type="ocl:OperationCallExp" location="139:26-139:57" operationName="allInstances">
+                    <source xsi:type="ocl:OclModelElement" location="139:26-139:42" name="StateMachine" model="/2"/>
+                  </source>
+                  <body xsi:type="ocl:OperatorCallExp" location="140:9-140:66" operationName="implies">
+                    <source xsi:type="ocl:OperatorCallExp" location="140:9-140:50" operationName="and">
+                      <source xsi:type="ocl:OperatorCallExp" location="140:9-140:27" operationName="=">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="140:9-140:23" name="stateMachine">
+                          <source xsi:type="ocl:VariableExp" location="140:9-140:10" referredVariable="/0/@elements.25/@definition/@feature/@body/@iterators.0"/>
+                        </source>
+                        <arguments xsi:type="ocl:VariableExp" location="140:24-140:27" referredVariable="/0/@elements.25/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.0"/>
+                      </source>
+                      <arguments xsi:type="ocl:OperatorCallExp" location="140:32-140:50" operationName="=">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="140:32-140:46" name="stateMachine">
+                          <source xsi:type="ocl:VariableExp" location="140:32-140:33" referredVariable="/0/@elements.25/@definition/@feature/@body/@body/@iterators.0"/>
+                        </source>
+                        <arguments xsi:type="ocl:VariableExp" location="140:47-140:50" referredVariable="/0/@elements.25/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.1"/>
+                      </arguments>
+                    </source>
+                    <arguments xsi:type="ocl:OperatorCallExp" location="140:59-140:66" operationName="=">
+                      <source xsi:type="ocl:VariableExp" location="140:59-140:62" referredVariable="/0/@elements.25/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.0"/>
+                      <arguments xsi:type="ocl:VariableExp" location="140:63-140:66" referredVariable="/0/@elements.25/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.1"/>
+                    </arguments>
+                  </body>
+                  <iterators location="139:66-139:69" varName="sm1" variableExp="/0/@elements.25/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@source/@arguments.0 /0/@elements.25/@definition/@feature/@body/@body/@body/@arguments.0/@body/@arguments.0/@source"/>
+                  <iterators location="139:70-139:73" varName="sm2" variableExp="/0/@elements.25/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@arguments.0/@arguments.0 /0/@elements.25/@definition/@feature/@body/@body/@body/@arguments.0/@body/@arguments.0/@arguments.0"/>
+                </arguments>
+              </body>
+              <iterators location="138:46-138:47" varName="s" variableExp="/0/@elements.25/@definition/@feature/@body/@body/@body/@source/@arguments.0 /0/@elements.25/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@arguments.0/@source/@source"/>
+            </body>
+            <iterators location="137:41-137:42" varName="t" variableExp="/0/@elements.25/@definition/@feature/@body/@body/@body/@source/@source/@source /0/@elements.25/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@source/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="136:8-136:30">
+          <context_ xsi:type="ocl:OclModelElement" location="136:16-136:30" name="Transition" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="143:1-147:70">
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="143:8-147:69">
+        <feature xsi:type="ocl:Operation" location="143:36-147:69" name="fsm_transition_trg_contain_sm">
+          <returnType xsi:type="ocl:BooleanType" location="143:69-143:76"/>
+          <body xsi:type="ocl:IteratorExp" location="144:3-147:69" name="forAll">
+            <commentsBefore>-- transition and target in the same state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="144:3-144:32" operationName="allInstances">
+              <commentsBefore>-- transition and target in the same state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="144:3-144:17" name="Transition" model="/1">
+                <commentsBefore>-- transition and target in the same state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="145:5-147:68" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="145:5-145:37" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="145:5-145:22" name="AbstractState" model="/1"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="146:7-147:67" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="146:7-146:17" operationName="=">
+                  <source xsi:type="ocl:NavigationOrAttributeCallExp" location="146:7-146:15" name="target">
+                    <source xsi:type="ocl:VariableExp" location="146:7-146:8" referredVariable="/0/@elements.26/@definition/@feature/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:VariableExp" location="146:16-146:17" referredVariable="/0/@elements.26/@definition/@feature/@body/@body/@iterators.0"/>
+                </source>
+                <arguments xsi:type="ocl:IteratorExp" location="146:26-147:67" name="forAll">
+                  <source xsi:type="ocl:OperationCallExp" location="146:26-146:57" operationName="allInstances">
+                    <source xsi:type="ocl:OclModelElement" location="146:26-146:42" name="StateMachine" model="/2"/>
+                  </source>
+                  <body xsi:type="ocl:OperatorCallExp" location="147:9-147:66" operationName="implies">
+                    <source xsi:type="ocl:OperatorCallExp" location="147:9-147:50" operationName="and">
+                      <source xsi:type="ocl:OperatorCallExp" location="147:9-147:27" operationName="=">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="147:9-147:23" name="stateMachine">
+                          <source xsi:type="ocl:VariableExp" location="147:9-147:10" referredVariable="/0/@elements.26/@definition/@feature/@body/@iterators.0"/>
+                        </source>
+                        <arguments xsi:type="ocl:VariableExp" location="147:24-147:27" referredVariable="/0/@elements.26/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.0"/>
+                      </source>
+                      <arguments xsi:type="ocl:OperatorCallExp" location="147:32-147:50" operationName="=">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="147:32-147:46" name="stateMachine">
+                          <source xsi:type="ocl:VariableExp" location="147:32-147:33" referredVariable="/0/@elements.26/@definition/@feature/@body/@body/@iterators.0"/>
+                        </source>
+                        <arguments xsi:type="ocl:VariableExp" location="147:47-147:50" referredVariable="/0/@elements.26/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.1"/>
+                      </arguments>
+                    </source>
+                    <arguments xsi:type="ocl:OperatorCallExp" location="147:59-147:66" operationName="=">
+                      <source xsi:type="ocl:VariableExp" location="147:59-147:62" referredVariable="/0/@elements.26/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.0"/>
+                      <arguments xsi:type="ocl:VariableExp" location="147:63-147:66" referredVariable="/0/@elements.26/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.1"/>
+                    </arguments>
+                  </body>
+                  <iterators location="146:66-146:69" varName="sm1" variableExp="/0/@elements.26/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@source/@arguments.0 /0/@elements.26/@definition/@feature/@body/@body/@body/@arguments.0/@body/@arguments.0/@source"/>
+                  <iterators location="146:70-146:73" varName="sm2" variableExp="/0/@elements.26/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@arguments.0/@arguments.0 /0/@elements.26/@definition/@feature/@body/@body/@body/@arguments.0/@body/@arguments.0/@arguments.0"/>
+                </arguments>
+              </body>
+              <iterators location="145:46-145:47" varName="s" variableExp="/0/@elements.26/@definition/@feature/@body/@body/@body/@source/@arguments.0 /0/@elements.26/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@arguments.0/@source/@source"/>
+            </body>
+            <iterators location="144:41-144:42" varName="t" variableExp="/0/@elements.26/@definition/@feature/@body/@body/@body/@source/@source/@source /0/@elements.26/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@source/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="143:8-143:30">
+          <context_ xsi:type="ocl:OclModelElement" location="143:16-143:30" name="Transition" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="150:1-154:72">
+      <commentsBefore>--@post</commentsBefore>
+      <definition location="150:8-154:71">
+        <feature xsi:type="ocl:Operation" location="150:36-154:71" name="fsm_transition_contain_sm">
+          <returnType xsi:type="ocl:BooleanType" location="150:65-150:72"/>
+          <body xsi:type="ocl:IteratorExp" location="151:3-154:71" name="forAll">
+            <commentsBefore>-- source and target in the same state machine</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="151:3-151:32" operationName="allInstances">
+              <commentsBefore>-- source and target in the same state machine</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="151:3-151:17" name="Transition" model="/1">
+                <commentsBefore>-- source and target in the same state machine</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="152:5-154:70" name="forAll">
+              <source xsi:type="ocl:OperationCallExp" location="152:5-152:37" operationName="allInstances">
+                <source xsi:type="ocl:OclModelElement" location="152:5-152:22" name="AbstractState" model="/1"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="153:7-154:69" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="153:7-153:34" operationName="and">
+                  <source xsi:type="ocl:OperatorCallExp" location="153:7-153:18" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="153:7-153:15" name="source">
+                      <source xsi:type="ocl:VariableExp" location="153:7-153:8" referredVariable="/0/@elements.27/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="153:16-153:18" referredVariable="/0/@elements.27/@definition/@feature/@body/@body/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:OperatorCallExp" location="153:23-153:34" operationName="=">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="153:23-153:31" name="target">
+                      <source xsi:type="ocl:VariableExp" location="153:23-153:24" referredVariable="/0/@elements.27/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:VariableExp" location="153:32-153:34" referredVariable="/0/@elements.27/@definition/@feature/@body/@body/@iterators.1"/>
+                  </arguments>
+                </source>
+                <arguments xsi:type="ocl:IteratorExp" location="153:43-154:69" name="forAll">
+                  <source xsi:type="ocl:OperationCallExp" location="153:43-153:74" operationName="allInstances">
+                    <source xsi:type="ocl:OclModelElement" location="153:43-153:59" name="StateMachine" model="/2"/>
+                  </source>
+                  <body xsi:type="ocl:OperatorCallExp" location="154:9-154:68" operationName="implies">
+                    <source xsi:type="ocl:OperatorCallExp" location="154:9-154:52" operationName="and">
+                      <source xsi:type="ocl:OperatorCallExp" location="154:9-154:28" operationName="=">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="154:9-154:24" name="stateMachine">
+                          <source xsi:type="ocl:VariableExp" location="154:9-154:11" referredVariable="/0/@elements.27/@definition/@feature/@body/@body/@iterators.0"/>
+                        </source>
+                        <arguments xsi:type="ocl:VariableExp" location="154:25-154:28" referredVariable="/0/@elements.27/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.0"/>
+                      </source>
+                      <arguments xsi:type="ocl:OperatorCallExp" location="154:33-154:52" operationName="=">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="154:33-154:48" name="stateMachine">
+                          <source xsi:type="ocl:VariableExp" location="154:33-154:35" referredVariable="/0/@elements.27/@definition/@feature/@body/@body/@iterators.1"/>
+                        </source>
+                        <arguments xsi:type="ocl:VariableExp" location="154:49-154:52" referredVariable="/0/@elements.27/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.1"/>
+                      </arguments>
+                    </source>
+                    <arguments xsi:type="ocl:OperatorCallExp" location="154:61-154:68" operationName="=">
+                      <source xsi:type="ocl:VariableExp" location="154:61-154:64" referredVariable="/0/@elements.27/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.0"/>
+                      <arguments xsi:type="ocl:VariableExp" location="154:65-154:68" referredVariable="/0/@elements.27/@definition/@feature/@body/@body/@body/@arguments.0/@iterators.1"/>
+                    </arguments>
+                  </body>
+                  <iterators location="153:83-153:86" varName="sm1" variableExp="/0/@elements.27/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@source/@arguments.0 /0/@elements.27/@definition/@feature/@body/@body/@body/@arguments.0/@body/@arguments.0/@source"/>
+                  <iterators location="153:87-153:90" varName="sm2" variableExp="/0/@elements.27/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@arguments.0/@arguments.0 /0/@elements.27/@definition/@feature/@body/@body/@body/@arguments.0/@body/@arguments.0/@arguments.0"/>
+                </arguments>
+              </body>
+              <iterators location="152:46-152:48" varName="s1" variableExp="/0/@elements.27/@definition/@feature/@body/@body/@body/@source/@source/@arguments.0 /0/@elements.27/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@source/@source/@source"/>
+              <iterators location="152:49-152:51" varName="s2" variableExp="/0/@elements.27/@definition/@feature/@body/@body/@body/@source/@arguments.0/@arguments.0 /0/@elements.27/@definition/@feature/@body/@body/@body/@arguments.0/@body/@source/@arguments.0/@source/@source"/>
+            </body>
+            <iterators location="151:41-151:42" varName="t" variableExp="/0/@elements.27/@definition/@feature/@body/@body/@body/@source/@source/@source/@source /0/@elements.27/@definition/@feature/@body/@body/@body/@source/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="150:8-150:30">
+          <context_ xsi:type="ocl:OclModelElement" location="150:16-150:30" name="Transition" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+  </atl:Module>
+  <ocl:OclModel location="3:14-3:17" name="FSM" elements="/0/@elements.15/@definition/@context_/@context_ /0/@elements.15/@definition/@feature/@body/@source/@source /0/@elements.16/@definition/@context_/@context_ /0/@elements.16/@definition/@feature/@body/@source/@source /0/@elements.17/@definition/@context_/@context_ /0/@elements.17/@definition/@feature/@body/@source/@source /0/@elements.18/@definition/@context_/@context_ /0/@elements.18/@definition/@feature/@body/@source/@source /0/@elements.18/@definition/@feature/@body/@body/@source/@source /0/@elements.19/@definition/@context_/@context_ /0/@elements.19/@definition/@feature/@body/@source/@source /0/@elements.20/@definition/@context_/@context_ /0/@elements.20/@definition/@feature/@body/@source/@source /0/@elements.20/@definition/@feature/@body/@body/@source/@source /0/@elements.21/@definition/@context_/@context_ /0/@elements.21/@definition/@feature/@body/@source/@source /0/@elements.22/@definition/@context_/@context_ /0/@elements.22/@definition/@feature/@body/@source/@source /0/@elements.22/@definition/@feature/@body/@body/@source/@source /0/@elements.23/@definition/@context_/@context_ /0/@elements.23/@definition/@feature/@body/@source/@source /0/@elements.24/@definition/@context_/@context_ /0/@elements.24/@definition/@feature/@body/@source/@source /0/@elements.24/@definition/@feature/@body/@body/@source/@source /0/@elements.25/@definition/@context_/@context_ /0/@elements.25/@definition/@feature/@body/@source/@source /0/@elements.25/@definition/@feature/@body/@body/@source/@source /0/@elements.26/@definition/@context_/@context_ /0/@elements.26/@definition/@feature/@body/@source/@source /0/@elements.26/@definition/@feature/@body/@body/@source/@source /0/@elements.27/@definition/@context_/@context_ /0/@elements.27/@definition/@feature/@body/@source/@source /0/@elements.27/@definition/@feature/@body/@body/@source/@source" model="/0/@outModels.0"/>
+  <ocl:OclModel location="3:28-3:31" name="HSM" elements="/0/@elements.0/@definition/@context_/@context_ /0/@elements.1/@definition/@context_/@context_ /0/@elements.1/@definition/@feature/@body/@source/@source /0/@elements.2/@definition/@context_/@context_ /0/@elements.2/@definition/@feature/@body/@source/@source /0/@elements.3/@definition/@context_/@context_ /0/@elements.3/@definition/@feature/@body/@source/@source /0/@elements.4/@definition/@context_/@context_ /0/@elements.4/@definition/@feature/@body/@source/@source /0/@elements.4/@definition/@feature/@body/@body/@source/@source /0/@elements.5/@definition/@context_/@context_ /0/@elements.5/@definition/@feature/@body/@source/@source /0/@elements.5/@definition/@feature/@body/@body/@source/@source/@arguments.0 /0/@elements.5/@definition/@feature/@body/@body/@source/@arguments.0/@arguments.0 /0/@elements.6/@definition/@context_/@context_ /0/@elements.6/@definition/@feature/@body/@source/@source /0/@elements.7/@definition/@context_/@context_ /0/@elements.7/@definition/@feature/@body/@source/@source /0/@elements.7/@definition/@feature/@body/@body/@source/@source /0/@elements.8/@definition/@context_/@context_ /0/@elements.8/@definition/@feature/@body/@source/@source /0/@elements.9/@definition/@context_/@context_ /0/@elements.9/@definition/@feature/@body/@source/@source /0/@elements.9/@definition/@feature/@body/@body/@source/@source /0/@elements.10/@definition/@context_/@context_ /0/@elements.10/@definition/@feature/@body/@source/@source /0/@elements.11/@definition/@context_/@context_ /0/@elements.11/@definition/@feature/@body/@source/@source /0/@elements.11/@definition/@feature/@body/@body/@source/@source /0/@elements.12/@definition/@context_/@context_ /0/@elements.12/@definition/@feature/@body/@source/@source /0/@elements.12/@definition/@feature/@body/@body/@source/@source /0/@elements.12/@definition/@feature/@body/@body/@body/@arguments.0/@source/@source /0/@elements.13/@definition/@context_/@context_ /0/@elements.13/@definition/@feature/@body/@source/@source /0/@elements.13/@definition/@feature/@body/@body/@source/@source /0/@elements.13/@definition/@feature/@body/@body/@body/@arguments.0/@source/@source /0/@elements.14/@definition/@context_/@context_ /0/@elements.14/@definition/@feature/@body/@source/@source /0/@elements.14/@definition/@feature/@body/@body/@source/@source /0/@elements.14/@definition/@feature/@body/@body/@body/@arguments.0/@source/@source /0/@elements.25/@definition/@feature/@body/@body/@body/@arguments.0/@source/@source /0/@elements.26/@definition/@feature/@body/@body/@body/@arguments.0/@source/@source /0/@elements.27/@definition/@feature/@body/@body/@body/@arguments.0/@source/@source" model="/0/@inModels.0"/>
+  <ocl:VariableDeclaration location="6:3-6:7" varName="self" variableExp="/0/@elements.0/@definition/@feature/@body/@source"/>
+</xmi:XMI>

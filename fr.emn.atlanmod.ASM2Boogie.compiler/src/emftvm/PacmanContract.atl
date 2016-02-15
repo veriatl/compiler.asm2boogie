@@ -1,0 +1,59 @@
+module Pacman;
+
+create OUT : Pacman from IN : Pacman;
+
+
+
+--PRECONDITION 
+helper def: reachable(g1: Pacman!Grid, g2: Pacman!Grid): Boolean = true;
+
+helper def: I: Integer = 100; --Interval
+
+--@pre
+helper context Pacman!GameState def: ValidBoard(): Boolean = -- any two grids are reachable.
+  Pacman!GameState->allInstances()->forAll(g | g.grids->forAll(g1,g2 | thisModule.reachable(g1,g2)));
+
+--@pre
+helper context Pacman!GameState def: OneGameState(): Boolean = -- at most one GameState.
+  Pacman!GameState.allInstances()->forAll(gs1,gs2 | gs1=gs2);
+
+--@pre
+helper context Pacman!Record def: OneRecord(): Boolean = -- at most one Record.
+  Pacman!Record.allInstances()->forAll(r1,r2 | r1=r2);
+
+--@pre
+helper context Pacman!Pacman def: OnePacman(): Boolean = -- at most one Pacman.
+  Pacman!Pacman.allInstances()->forAll(p1,p2 | p1=p2);
+
+--@pre
+helper context Pacman!Ghost def: OneGhost(): Boolean = -- at most one Ghost.
+  Pacman!Ghost.allInstances()->forAll(g1,g2 | g1=g2);
+
+--@pre
+helper context Pacman!Grid def: existPacman(): Boolean = -- at least one Pacman.
+  Pacman!Grid.allInstances()->
+    exists(g|not g.hasPlayer.isOclUndefined() and g.hasPlayer.oclIsKindOf(Pacman!Pacman));
+  
+--@pre
+helper context Pacman!Grid def: existGhost(): Boolean = -- at least one Ghost.
+  Pacman!Grid.allInstances()->
+    exists(g|not g.hasEnemy.isOclUndefined() and g.hasEnemy.oclIsKindOf(Pacman!Ghost));
+
+--POSTCONDITION
+--@post
+helper context Pacman!Grid def: gemReachable(): Boolean = -- all grids containing a gem must be reachable by Pacman.
+  Pacman!Grid.allInstances()->forAll(g1,g2|not g1.hasPlayer.isOclUndefined() 
+    and not g2.hasGem.isOclUndefined() implies thisModule.reachable(g1,g2));
+    
+--@post
+helper context Pacman!GameState def: PacmanSurvive(): Boolean = -- exists a path where the ghost never kills Pacman.
+  Pacman!GameState->allInstances()->forAll(g | 
+  	g.STATE=4 implies g.grids->forAll(g1|
+  	  g1.hasEnemy.oclIsKindOf(Pacman!Ghost) implies not g1.hasPlayer.oclIsKindOf(Pacman!Pacman)));
+    
+--@post
+helper context Pacman!Action def: PacmanMoved(): Boolean = -- the Pacman must move within a time interval I.
+  let acts:Sequence(Pacman!Action) = Pacman!Action.allInstances()->select(a|
+  	a.DONEBY=1 and not a.Direction=5)->asSequence() in
+      Integer.allInstances->forAll(i|
+      	0<=i<acts->size()-1 implies acts->at(i+1).FRAME-acts->at(i).FRAME<=thisModule.I);

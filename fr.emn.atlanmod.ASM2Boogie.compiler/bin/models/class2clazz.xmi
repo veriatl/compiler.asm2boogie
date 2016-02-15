@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:atl="http://www.eclipse.org/gmt/2005/ATL" xmlns:ocl="http://www.eclipse.org/gmt/2005/OCL">
+  <atl:Module location="1:1-26:2" name="class2clazz">
+    <inModels location="3:25-3:35" name="IN" metamodel="/2"/>
+    <outModels location="3:8-3:19" name="OUT" metamodel="/1"/>
+    <elements xsi:type="atl:MatchedRule" location="5:1-14:2" name="ARefToBRef">
+      <outPattern location="8:2-13:4">
+        <elements xsi:type="atl:SimpleOutPatternElement" location="9:3-13:4" varName="bRef">
+          <type xsi:type="ocl:OclModelElement" location="9:10-9:20" name="BRef" model="/1"/>
+          <bindings location="10:4-10:21" propertyName="name">
+            <value xsi:type="ocl:NavigationOrAttributeCallExp" location="10:12-10:21" name="name">
+              <source xsi:type="ocl:VariableExp" location="10:12-10:16" referredVariable="/0/@elements.0/@inPattern/@elements.0"/>
+            </value>
+          </bindings>
+          <bindings location="11:4-11:48" propertyName="ref">
+            <commentsAfter>--# conjecture, this is not going to happen: thisModule.resolveTemp(Seq{b,c},'b'), where b,c map to something</commentsAfter>
+            <value xsi:type="ocl:OperationCallExp" location="11:11-11:48" operationName="resolveTemp">
+              <commentsAfter>--# conjecture, this is not going to happen: thisModule.resolveTemp(Seq{b,c},'b'), where b,c map to something</commentsAfter>
+              <source xsi:type="ocl:VariableExp" location="11:11-11:21" referredVariable="/3"/>
+              <arguments xsi:type="ocl:NavigationOrAttributeCallExp" location="11:34-11:42" name="ref">
+                <source xsi:type="ocl:VariableExp" location="11:34-11:38" referredVariable="/0/@elements.0/@inPattern/@elements.0"/>
+              </arguments>
+              <arguments xsi:type="ocl:StringExp" location="11:44-11:47" stringSymbol="b"/>
+            </value>
+          </bindings>
+        </elements>
+      </outPattern>
+      <inPattern location="6:2-7:20">
+        <elements xsi:type="atl:SimpleInPatternElement" location="7:3-7:20" varName="aRef" variableExp="/0/@elements.0/@outPattern/@elements.0/@bindings.0/@value/@source /0/@elements.0/@outPattern/@elements.0/@bindings.1/@value/@arguments.0/@source">
+          <type xsi:type="ocl:OclModelElement" location="7:10-7:20" name="ARef" model="/2"/>
+        </elements>
+      </inPattern>
+    </elements>
+    <elements xsi:type="atl:MatchedRule" location="16:1-26:2" name="AtoAnnotedB">
+      <outPattern location="19:2-24:39">
+        <elements xsi:type="atl:SimpleOutPatternElement" location="20:3-23:4" varName="b">
+          <type xsi:type="ocl:OclModelElement" location="20:7-20:14" name="B" model="/1"/>
+          <bindings location="21:4-21:21" propertyName="annotation">
+            <value xsi:type="ocl:VariableExp" location="21:18-21:21" referredVariable="/0/@elements.1/@outPattern/@elements.1"/>
+          </bindings>
+          <bindings location="22:4-22:18" propertyName="name">
+            <value xsi:type="ocl:NavigationOrAttributeCallExp" location="22:12-22:18" name="name">
+              <source xsi:type="ocl:VariableExp" location="22:12-22:13" referredVariable="/0/@elements.1/@inPattern/@elements.0"/>
+            </value>
+          </bindings>
+        </elements>
+        <elements xsi:type="atl:SimpleOutPatternElement" location="24:3-24:39" varName="ann" variableExp="/0/@elements.1/@outPattern/@elements.0/@bindings.0/@value">
+          <type xsi:type="ocl:OclModelElement" location="24:9-24:25" name="Annotation" model="/1"/>
+          <bindings location="24:28-24:38" propertyName="tag">
+            <value xsi:type="ocl:StringExp" location="24:35-24:38" stringSymbol="0"/>
+          </bindings>
+        </elements>
+      </outPattern>
+      <inPattern location="17:2-18:14">
+        <elements xsi:type="atl:SimpleInPatternElement" location="18:3-18:14" varName="a" variableExp="/0/@elements.1/@outPattern/@elements.0/@bindings.1/@value/@source">
+          <type xsi:type="ocl:OclModelElement" location="18:7-18:14" name="A" model="/2"/>
+        </elements>
+      </inPattern>
+    </elements>
+  </atl:Module>
+  <ocl:OclModel location="3:14-3:19" name="Clazz" elements="/0/@elements.0/@outPattern/@elements.0/@type /0/@elements.1/@outPattern/@elements.0/@type /0/@elements.1/@outPattern/@elements.1/@type" model="/0/@outModels.0"/>
+  <ocl:OclModel location="3:30-3:35" name="Class" elements="/0/@elements.0/@inPattern/@elements.0/@type /0/@elements.1/@inPattern/@elements.0/@type" model="/0/@inModels.0"/>
+  <ocl:VariableDeclaration location="11:11-11:21" varName="thisModule" variableExp="/0/@elements.0/@outPattern/@elements.0/@bindings.1/@value/@source"/>
+</xmi:XMI>

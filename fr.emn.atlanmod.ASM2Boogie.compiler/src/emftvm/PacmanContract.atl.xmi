@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:atl="http://www.eclipse.org/gmt/2005/ATL" xmlns:ocl="http://www.eclipse.org/gmt/2005/OCL">
+  <atl:Module location="1:1-59:89" name="Pacman">
+    <inModels location="3:26-3:37" name="IN" metamodel="/1"/>
+    <outModels location="3:8-3:20" name="OUT" metamodel="/1"/>
+    <elements xsi:type="atl:Helper" location="8:1-8:73">
+      <commentsBefore>--PRECONDITION </commentsBefore>
+      <definition location="8:8-8:72">
+        <feature xsi:type="ocl:Operation" location="8:13-8:72" name="reachable">
+          <parameters location="8:23-8:38" varName="g1">
+            <type xsi:type="ocl:OclModelElement" location="8:27-8:38" name="Grid" model="/1"/>
+          </parameters>
+          <parameters location="8:40-8:55" varName="g2">
+            <type xsi:type="ocl:OclModelElement" location="8:44-8:55" name="Grid" model="/1"/>
+          </parameters>
+          <returnType xsi:type="ocl:BooleanType" location="8:58-8:65"/>
+          <body xsi:type="ocl:BooleanExp" location="8:68-8:72" booleanSymbol="true"/>
+        </feature>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="10:1-10:30">
+      <commentsAfter>--Interval</commentsAfter>
+      <commentsAfter>--@pre</commentsAfter>
+      <definition location="10:8-10:29">
+        <feature xsi:type="ocl:Attribute" location="10:13-10:29" name="I">
+          <initExpression xsi:type="ocl:IntegerExp" location="10:26-10:29" integerSymbol="100"/>
+          <type xsi:type="ocl:IntegerType" location="10:16-10:23"/>
+        </feature>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="13:1-14:102">
+      <commentsBefore>--Interval</commentsBefore>
+      <commentsBefore>--@pre</commentsBefore>
+      <commentsAfter>--@pre</commentsAfter>
+      <definition location="13:8-14:101">
+        <feature xsi:type="ocl:Operation" location="13:38-14:101" name="ValidBoard">
+          <returnType xsi:type="ocl:BooleanType" location="13:52-13:59"/>
+          <body xsi:type="ocl:IteratorExp" location="14:3-14:101" name="forAll">
+            <commentsBefore>-- any two grids are reachable.</commentsBefore>
+            <source xsi:type="ocl:CollectionOperationCallExp" location="14:3-14:35" operationName="allInstances">
+              <commentsBefore>-- any two grids are reachable.</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="14:3-14:19" name="GameState" model="/1">
+                <commentsBefore>-- any two grids are reachable.</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:IteratorExp" location="14:48-14:100" name="forAll">
+              <source xsi:type="ocl:NavigationOrAttributeCallExp" location="14:48-14:55" name="grids">
+                <source xsi:type="ocl:VariableExp" location="14:48-14:49" referredVariable="/0/@elements.2/@definition/@feature/@body/@iterators.0"/>
+              </source>
+              <body xsi:type="ocl:OperationCallExp" location="14:72-14:99" operationName="reachable">
+                <source xsi:type="ocl:VariableExp" location="14:72-14:82" referredVariable="/2"/>
+                <arguments xsi:type="ocl:VariableExp" location="14:93-14:95" referredVariable="/0/@elements.2/@definition/@feature/@body/@body/@iterators.0"/>
+                <arguments xsi:type="ocl:VariableExp" location="14:96-14:98" referredVariable="/0/@elements.2/@definition/@feature/@body/@body/@iterators.1"/>
+              </body>
+              <iterators location="14:64-14:66" varName="g1" variableExp="/0/@elements.2/@definition/@feature/@body/@body/@body/@arguments.0"/>
+              <iterators location="14:67-14:69" varName="g2" variableExp="/0/@elements.2/@definition/@feature/@body/@body/@body/@arguments.1"/>
+            </body>
+            <iterators location="14:44-14:45" varName="g" variableExp="/0/@elements.2/@definition/@feature/@body/@body/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="13:8-13:32">
+          <context_ xsi:type="ocl:OclModelElement" location="13:16-13:32" name="GameState" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="17:1-18:62">
+      <commentsBefore>--@pre</commentsBefore>
+      <commentsAfter>--@pre</commentsAfter>
+      <definition location="17:8-18:61">
+        <feature xsi:type="ocl:Operation" location="17:38-18:61" name="OneGameState">
+          <returnType xsi:type="ocl:BooleanType" location="17:54-17:61"/>
+          <body xsi:type="ocl:IteratorExp" location="18:3-18:61" name="forAll">
+            <commentsBefore>-- at most one GameState.</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="18:3-18:34" operationName="allInstances">
+              <commentsBefore>-- at most one GameState.</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="18:3-18:19" name="GameState" model="/1">
+                <commentsBefore>-- at most one GameState.</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="18:53-18:60" operationName="=">
+              <source xsi:type="ocl:VariableExp" location="18:53-18:56" referredVariable="/0/@elements.3/@definition/@feature/@body/@iterators.0"/>
+              <arguments xsi:type="ocl:VariableExp" location="18:57-18:60" referredVariable="/0/@elements.3/@definition/@feature/@body/@iterators.1"/>
+            </body>
+            <iterators location="18:43-18:46" varName="gs1" variableExp="/0/@elements.3/@definition/@feature/@body/@body/@source"/>
+            <iterators location="18:47-18:50" varName="gs2" variableExp="/0/@elements.3/@definition/@feature/@body/@body/@arguments.0"/>
+          </body>
+        </feature>
+        <context_ location="17:8-17:32">
+          <context_ xsi:type="ocl:OclModelElement" location="17:16-17:32" name="GameState" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="21:1-22:55">
+      <commentsBefore>--@pre</commentsBefore>
+      <commentsAfter>--@pre</commentsAfter>
+      <definition location="21:8-22:54">
+        <feature xsi:type="ocl:Operation" location="21:35-22:54" name="OneRecord">
+          <returnType xsi:type="ocl:BooleanType" location="21:48-21:55"/>
+          <body xsi:type="ocl:IteratorExp" location="22:3-22:54" name="forAll">
+            <commentsBefore>-- at most one Record.</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="22:3-22:31" operationName="allInstances">
+              <commentsBefore>-- at most one Record.</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="22:3-22:16" name="Record" model="/1">
+                <commentsBefore>-- at most one Record.</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="22:48-22:53" operationName="=">
+              <source xsi:type="ocl:VariableExp" location="22:48-22:50" referredVariable="/0/@elements.4/@definition/@feature/@body/@iterators.0"/>
+              <arguments xsi:type="ocl:VariableExp" location="22:51-22:53" referredVariable="/0/@elements.4/@definition/@feature/@body/@iterators.1"/>
+            </body>
+            <iterators location="22:40-22:42" varName="r1" variableExp="/0/@elements.4/@definition/@feature/@body/@body/@source"/>
+            <iterators location="22:43-22:45" varName="r2" variableExp="/0/@elements.4/@definition/@feature/@body/@body/@arguments.0"/>
+          </body>
+        </feature>
+        <context_ location="21:8-21:29">
+          <context_ xsi:type="ocl:OclModelElement" location="21:16-21:29" name="Record" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="25:1-26:55">
+      <commentsBefore>--@pre</commentsBefore>
+      <commentsAfter>--@pre</commentsAfter>
+      <definition location="25:8-26:54">
+        <feature xsi:type="ocl:Operation" location="25:35-26:54" name="OnePacman">
+          <returnType xsi:type="ocl:BooleanType" location="25:48-25:55"/>
+          <body xsi:type="ocl:IteratorExp" location="26:3-26:54" name="forAll">
+            <commentsBefore>-- at most one Pacman.</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="26:3-26:31" operationName="allInstances">
+              <commentsBefore>-- at most one Pacman.</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="26:3-26:16" name="Pacman" model="/1">
+                <commentsBefore>-- at most one Pacman.</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="26:48-26:53" operationName="=">
+              <source xsi:type="ocl:VariableExp" location="26:48-26:50" referredVariable="/0/@elements.5/@definition/@feature/@body/@iterators.0"/>
+              <arguments xsi:type="ocl:VariableExp" location="26:51-26:53" referredVariable="/0/@elements.5/@definition/@feature/@body/@iterators.1"/>
+            </body>
+            <iterators location="26:40-26:42" varName="p1" variableExp="/0/@elements.5/@definition/@feature/@body/@body/@source"/>
+            <iterators location="26:43-26:45" varName="p2" variableExp="/0/@elements.5/@definition/@feature/@body/@body/@arguments.0"/>
+          </body>
+        </feature>
+        <context_ location="25:8-25:29">
+          <context_ xsi:type="ocl:OclModelElement" location="25:16-25:29" name="Pacman" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="29:1-30:54">
+      <commentsBefore>--@pre</commentsBefore>
+      <commentsAfter>--@pre</commentsAfter>
+      <definition location="29:8-30:53">
+        <feature xsi:type="ocl:Operation" location="29:34-30:53" name="OneGhost">
+          <returnType xsi:type="ocl:BooleanType" location="29:46-29:53"/>
+          <body xsi:type="ocl:IteratorExp" location="30:3-30:53" name="forAll">
+            <commentsBefore>-- at most one Ghost.</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="30:3-30:30" operationName="allInstances">
+              <commentsBefore>-- at most one Ghost.</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="30:3-30:15" name="Ghost" model="/1">
+                <commentsBefore>-- at most one Ghost.</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="30:47-30:52" operationName="=">
+              <source xsi:type="ocl:VariableExp" location="30:47-30:49" referredVariable="/0/@elements.6/@definition/@feature/@body/@iterators.0"/>
+              <arguments xsi:type="ocl:VariableExp" location="30:50-30:52" referredVariable="/0/@elements.6/@definition/@feature/@body/@iterators.1"/>
+            </body>
+            <iterators location="30:39-30:41" varName="g1" variableExp="/0/@elements.6/@definition/@feature/@body/@body/@source"/>
+            <iterators location="30:42-30:44" varName="g2" variableExp="/0/@elements.6/@definition/@feature/@body/@body/@arguments.0"/>
+          </body>
+        </feature>
+        <context_ location="29:8-29:28">
+          <context_ xsi:type="ocl:OclModelElement" location="29:16-29:28" name="Ghost" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="33:1-35:91">
+      <commentsBefore>--@pre</commentsBefore>
+      <commentsAfter>--@pre</commentsAfter>
+      <definition location="33:8-35:90">
+        <feature xsi:type="ocl:Operation" location="33:33-35:90" name="existPacman">
+          <returnType xsi:type="ocl:BooleanType" location="33:48-33:55"/>
+          <body xsi:type="ocl:IteratorExp" location="34:3-35:90" name="exists">
+            <commentsBefore>-- at least one Pacman.</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="34:3-34:29" operationName="allInstances">
+              <commentsBefore>-- at least one Pacman.</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="34:3-34:14" name="Grid" model="/1">
+                <commentsBefore>-- at least one Pacman.</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="35:14-35:89" operationName="and">
+              <source xsi:type="ocl:OperatorCallExp" location="35:14-35:46" operationName="not">
+                <source xsi:type="ocl:OperationCallExp" location="35:18-35:46" operationName="isOclUndefined">
+                  <source xsi:type="ocl:NavigationOrAttributeCallExp" location="35:18-35:29" name="hasPlayer">
+                    <source xsi:type="ocl:VariableExp" location="35:18-35:19" referredVariable="/0/@elements.7/@definition/@feature/@body/@iterators.0"/>
+                  </source>
+                </source>
+              </source>
+              <arguments xsi:type="ocl:OperationCallExp" location="35:51-35:89" operationName="oclIsKindOf">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="35:51-35:62" name="hasPlayer">
+                  <source xsi:type="ocl:VariableExp" location="35:51-35:52" referredVariable="/0/@elements.7/@definition/@feature/@body/@iterators.0"/>
+                </source>
+                <arguments xsi:type="ocl:OclModelElement" location="35:75-35:88" name="Pacman" model="/1"/>
+              </arguments>
+            </body>
+            <iterators location="35:12-35:13" varName="g" variableExp="/0/@elements.7/@definition/@feature/@body/@body/@source/@source/@source/@source /0/@elements.7/@definition/@feature/@body/@body/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="33:8-33:27">
+          <context_ xsi:type="ocl:OclModelElement" location="33:16-33:27" name="Grid" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="38:1-40:88">
+      <commentsBefore>--@pre</commentsBefore>
+      <commentsAfter>--POSTCONDITION</commentsAfter>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="38:8-40:87">
+        <feature xsi:type="ocl:Operation" location="38:33-40:87" name="existGhost">
+          <returnType xsi:type="ocl:BooleanType" location="38:47-38:54"/>
+          <body xsi:type="ocl:IteratorExp" location="39:3-40:87" name="exists">
+            <commentsBefore>-- at least one Ghost.</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="39:3-39:29" operationName="allInstances">
+              <commentsBefore>-- at least one Ghost.</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="39:3-39:14" name="Grid" model="/1">
+                <commentsBefore>-- at least one Ghost.</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="40:14-40:86" operationName="and">
+              <source xsi:type="ocl:OperatorCallExp" location="40:14-40:45" operationName="not">
+                <source xsi:type="ocl:OperationCallExp" location="40:18-40:45" operationName="isOclUndefined">
+                  <source xsi:type="ocl:NavigationOrAttributeCallExp" location="40:18-40:28" name="hasEnemy">
+                    <source xsi:type="ocl:VariableExp" location="40:18-40:19" referredVariable="/0/@elements.8/@definition/@feature/@body/@iterators.0"/>
+                  </source>
+                </source>
+              </source>
+              <arguments xsi:type="ocl:OperationCallExp" location="40:50-40:86" operationName="oclIsKindOf">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="40:50-40:60" name="hasEnemy">
+                  <source xsi:type="ocl:VariableExp" location="40:50-40:51" referredVariable="/0/@elements.8/@definition/@feature/@body/@iterators.0"/>
+                </source>
+                <arguments xsi:type="ocl:OclModelElement" location="40:73-40:85" name="Ghost" model="/1"/>
+              </arguments>
+            </body>
+            <iterators location="40:12-40:13" varName="g" variableExp="/0/@elements.8/@definition/@feature/@body/@body/@source/@source/@source/@source /0/@elements.8/@definition/@feature/@body/@body/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="38:8-38:27">
+          <context_ xsi:type="ocl:OclModelElement" location="38:16-38:27" name="Grid" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="44:1-46:77">
+      <commentsBefore>--POSTCONDITION</commentsBefore>
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="44:8-46:76">
+        <feature xsi:type="ocl:Operation" location="44:33-46:76" name="gemReachable">
+          <returnType xsi:type="ocl:BooleanType" location="44:49-44:56"/>
+          <body xsi:type="ocl:IteratorExp" location="45:3-46:76" name="forAll">
+            <commentsBefore>-- all grids containing a gem must be reachable by Pacman.</commentsBefore>
+            <source xsi:type="ocl:OperationCallExp" location="45:3-45:29" operationName="allInstances">
+              <commentsBefore>-- all grids containing a gem must be reachable by Pacman.</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="45:3-45:14" name="Grid" model="/1">
+                <commentsBefore>-- all grids containing a gem must be reachable by Pacman.</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="45:44-46:75" operationName="implies">
+              <source xsi:type="ocl:OperatorCallExp" location="45:44-46:39" operationName="and">
+                <source xsi:type="ocl:OperatorCallExp" location="45:44-45:77" operationName="not">
+                  <source xsi:type="ocl:OperationCallExp" location="45:48-45:77" operationName="isOclUndefined">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="45:48-45:60" name="hasPlayer">
+                      <source xsi:type="ocl:VariableExp" location="45:48-45:50" referredVariable="/0/@elements.9/@definition/@feature/@body/@iterators.0"/>
+                    </source>
+                  </source>
+                </source>
+                <arguments xsi:type="ocl:OperatorCallExp" location="46:9-46:39" operationName="not">
+                  <source xsi:type="ocl:OperationCallExp" location="46:13-46:39" operationName="isOclUndefined">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="46:13-46:22" name="hasGem">
+                      <source xsi:type="ocl:VariableExp" location="46:13-46:15" referredVariable="/0/@elements.9/@definition/@feature/@body/@iterators.1"/>
+                    </source>
+                  </source>
+                </arguments>
+              </source>
+              <arguments xsi:type="ocl:OperationCallExp" location="46:48-46:75" operationName="reachable">
+                <source xsi:type="ocl:VariableExp" location="46:48-46:58" referredVariable="/3"/>
+                <arguments xsi:type="ocl:VariableExp" location="46:69-46:71" referredVariable="/0/@elements.9/@definition/@feature/@body/@iterators.0"/>
+                <arguments xsi:type="ocl:VariableExp" location="46:72-46:74" referredVariable="/0/@elements.9/@definition/@feature/@body/@iterators.1"/>
+              </arguments>
+            </body>
+            <iterators location="45:38-45:40" varName="g1" variableExp="/0/@elements.9/@definition/@feature/@body/@body/@source/@source/@source/@source/@source /0/@elements.9/@definition/@feature/@body/@body/@arguments.0/@arguments.0"/>
+            <iterators location="45:41-45:43" varName="g2" variableExp="/0/@elements.9/@definition/@feature/@body/@body/@source/@arguments.0/@source/@source/@source /0/@elements.9/@definition/@feature/@body/@body/@arguments.0/@arguments.1"/>
+          </body>
+        </feature>
+        <context_ location="44:8-44:27">
+          <context_ xsi:type="ocl:OclModelElement" location="44:16-44:27" name="Grid" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="49:1-52:98">
+      <commentsBefore>--@post</commentsBefore>
+      <commentsAfter>--@post</commentsAfter>
+      <definition location="49:8-52:97">
+        <feature xsi:type="ocl:Operation" location="49:38-52:97" name="PacmanSurvive">
+          <returnType xsi:type="ocl:BooleanType" location="49:55-49:62"/>
+          <body xsi:type="ocl:IteratorExp" location="50:3-52:97" name="forAll">
+            <commentsBefore>-- exists a path where the ghost never kills Pacman.</commentsBefore>
+            <source xsi:type="ocl:CollectionOperationCallExp" location="50:3-50:35" operationName="allInstances">
+              <commentsBefore>-- exists a path where the ghost never kills Pacman.</commentsBefore>
+              <source xsi:type="ocl:OclModelElement" location="50:3-50:19" name="GameState" model="/1">
+                <commentsBefore>-- exists a path where the ghost never kills Pacman.</commentsBefore>
+              </source>
+            </source>
+            <body xsi:type="ocl:OperatorCallExp" location="51:4-52:96" operationName="implies">
+              <source xsi:type="ocl:OperatorCallExp" location="51:4-51:13" operationName="=">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="51:4-51:11" name="STATE">
+                  <source xsi:type="ocl:VariableExp" location="51:4-51:5" referredVariable="/0/@elements.10/@definition/@feature/@body/@iterators.0"/>
+                </source>
+                <arguments xsi:type="ocl:IntegerExp" location="51:12-51:13" integerSymbol="4"/>
+              </source>
+              <arguments xsi:type="ocl:IteratorExp" location="51:22-52:96" name="forAll">
+                <source xsi:type="ocl:NavigationOrAttributeCallExp" location="51:22-51:29" name="grids">
+                  <source xsi:type="ocl:VariableExp" location="51:22-51:23" referredVariable="/0/@elements.10/@definition/@feature/@body/@iterators.0"/>
+                </source>
+                <body xsi:type="ocl:OperatorCallExp" location="52:6-52:95" operationName="implies">
+                  <source xsi:type="ocl:OperationCallExp" location="52:6-52:43" operationName="oclIsKindOf">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="52:6-52:17" name="hasEnemy">
+                      <source xsi:type="ocl:VariableExp" location="52:6-52:8" referredVariable="/0/@elements.10/@definition/@feature/@body/@body/@arguments.0/@iterators.0"/>
+                    </source>
+                    <arguments xsi:type="ocl:OclModelElement" location="52:30-52:42" name="Ghost" model="/1"/>
+                  </source>
+                  <arguments xsi:type="ocl:OperatorCallExp" location="52:52-52:95" operationName="not">
+                    <source xsi:type="ocl:OperationCallExp" location="52:56-52:95" operationName="oclIsKindOf">
+                      <source xsi:type="ocl:NavigationOrAttributeCallExp" location="52:56-52:68" name="hasPlayer">
+                        <source xsi:type="ocl:VariableExp" location="52:56-52:58" referredVariable="/0/@elements.10/@definition/@feature/@body/@body/@arguments.0/@iterators.0"/>
+                      </source>
+                      <arguments xsi:type="ocl:OclModelElement" location="52:81-52:94" name="Pacman" model="/1"/>
+                    </source>
+                  </arguments>
+                </body>
+                <iterators location="51:38-51:40" varName="g1" variableExp="/0/@elements.10/@definition/@feature/@body/@body/@arguments.0/@body/@source/@source/@source /0/@elements.10/@definition/@feature/@body/@body/@arguments.0/@body/@arguments.0/@source/@source/@source"/>
+              </arguments>
+            </body>
+            <iterators location="50:44-50:45" varName="g" variableExp="/0/@elements.10/@definition/@feature/@body/@body/@source/@source/@source /0/@elements.10/@definition/@feature/@body/@body/@arguments.0/@source/@source"/>
+          </body>
+        </feature>
+        <context_ location="49:8-49:32">
+          <context_ xsi:type="ocl:OclModelElement" location="49:16-49:32" name="GameState" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+    <elements xsi:type="atl:Helper" location="55:1-59:89">
+      <commentsBefore>--@post</commentsBefore>
+      <definition location="55:8-59:88">
+        <feature xsi:type="ocl:Operation" location="55:35-59:88" name="PacmanMoved">
+          <returnType xsi:type="ocl:BooleanType" location="55:50-55:57"/>
+          <body xsi:type="ocl:LetExp" location="56:3-59:88">
+            <commentsBefore>-- the Pacman must move within a time interval I.</commentsBefore>
+            <variable location="56:7-57:51" varName="acts" variableExp="/0/@elements.11/@definition/@feature/@body/@in_/@body/@source/@arguments.0/@source/@source /0/@elements.11/@definition/@feature/@body/@in_/@body/@arguments.0/@source/@source/@source/@source /0/@elements.11/@definition/@feature/@body/@in_/@body/@arguments.0/@source/@arguments.0/@source/@source">
+              <type xsi:type="ocl:SequenceType" location="56:12-56:35">
+                <elementType xsi:type="ocl:OclModelElement" location="56:21-56:34" name="Action" model="/1"/>
+              </type>
+              <initExpression xsi:type="ocl:CollectionOperationCallExp" location="56:38-57:51" operationName="asSequence">
+                <source xsi:type="ocl:IteratorExp" location="56:38-57:37" name="select">
+                  <source xsi:type="ocl:OperationCallExp" location="56:38-56:66" operationName="allInstances">
+                    <source xsi:type="ocl:OclModelElement" location="56:38-56:51" name="Action" model="/1"/>
+                  </source>
+                  <body xsi:type="ocl:OperatorCallExp" location="57:4-57:36" operationName="and">
+                    <source xsi:type="ocl:OperatorCallExp" location="57:4-57:14" operationName="=">
+                      <source xsi:type="ocl:NavigationOrAttributeCallExp" location="57:4-57:12" name="DONEBY">
+                        <source xsi:type="ocl:VariableExp" location="57:4-57:5" referredVariable="/0/@elements.11/@definition/@feature/@body/@variable/@initExpression/@source/@iterators.0"/>
+                      </source>
+                      <arguments xsi:type="ocl:IntegerExp" location="57:13-57:14" integerSymbol="1"/>
+                    </source>
+                    <arguments xsi:type="ocl:OperatorCallExp" location="57:19-57:36" operationName="=">
+                      <source xsi:type="ocl:OperatorCallExp" location="57:19-57:34" operationName="not">
+                        <source xsi:type="ocl:NavigationOrAttributeCallExp" location="57:23-57:34" name="Direction">
+                          <source xsi:type="ocl:VariableExp" location="57:23-57:24" referredVariable="/0/@elements.11/@definition/@feature/@body/@variable/@initExpression/@source/@iterators.0"/>
+                        </source>
+                      </source>
+                      <arguments xsi:type="ocl:IntegerExp" location="57:35-57:36" integerSymbol="5"/>
+                    </arguments>
+                  </body>
+                  <iterators location="56:75-56:76" varName="a" variableExp="/0/@elements.11/@definition/@feature/@body/@variable/@initExpression/@source/@body/@source/@source/@source /0/@elements.11/@definition/@feature/@body/@variable/@initExpression/@source/@body/@arguments.0/@source/@source/@source"/>
+                </source>
+              </initExpression>
+            </variable>
+            <in_ xsi:type="ocl:IteratorExp" location="58:7-59:88" name="forAll">
+              <source xsi:type="ocl:NavigationOrAttributeCallExp" location="58:7-58:27" name="allInstances">
+                <source xsi:type="ocl:IntegerType" location="58:7-58:14"/>
+              </source>
+              <body xsi:type="ocl:OperatorCallExp" location="59:8-59:87" operationName="implies">
+                <source xsi:type="ocl:OperatorCallExp" location="59:8-59:27" operationName="&lt;">
+                  <source xsi:type="ocl:OperatorCallExp" location="59:8-59:12" operationName="&lt;=">
+                    <source xsi:type="ocl:IntegerExp" location="59:8-59:9"/>
+                    <arguments xsi:type="ocl:VariableExp" location="59:11-59:12" referredVariable="/0/@elements.11/@definition/@feature/@body/@in_/@iterators.0"/>
+                  </source>
+                  <arguments xsi:type="ocl:OperatorCallExp" location="59:13-59:27" operationName="-">
+                    <source xsi:type="ocl:CollectionOperationCallExp" location="59:13-59:25" operationName="size">
+                      <source xsi:type="ocl:VariableExp" location="59:13-59:17" referredVariable="/0/@elements.11/@definition/@feature/@body/@variable"/>
+                    </source>
+                    <arguments xsi:type="ocl:IntegerExp" location="59:26-59:27" integerSymbol="1"/>
+                  </arguments>
+                </source>
+                <arguments xsi:type="ocl:OperatorCallExp" location="59:36-59:87" operationName="&lt;=">
+                  <source xsi:type="ocl:OperatorCallExp" location="59:36-59:73" operationName="-">
+                    <source xsi:type="ocl:NavigationOrAttributeCallExp" location="59:36-59:55" name="FRAME">
+                      <source xsi:type="ocl:CollectionOperationCallExp" location="59:36-59:49" operationName="at">
+                        <source xsi:type="ocl:VariableExp" location="59:36-59:40" referredVariable="/0/@elements.11/@definition/@feature/@body/@variable"/>
+                        <arguments xsi:type="ocl:OperatorCallExp" location="59:45-59:48" operationName="+">
+                          <source xsi:type="ocl:VariableExp" location="59:45-59:46" referredVariable="/0/@elements.11/@definition/@feature/@body/@in_/@iterators.0"/>
+                          <arguments xsi:type="ocl:IntegerExp" location="59:47-59:48" integerSymbol="1"/>
+                        </arguments>
+                      </source>
+                    </source>
+                    <arguments xsi:type="ocl:NavigationOrAttributeCallExp" location="59:56-59:73" name="FRAME">
+                      <source xsi:type="ocl:CollectionOperationCallExp" location="59:56-59:67" operationName="at">
+                        <source xsi:type="ocl:VariableExp" location="59:56-59:60" referredVariable="/0/@elements.11/@definition/@feature/@body/@variable"/>
+                        <arguments xsi:type="ocl:VariableExp" location="59:65-59:66" referredVariable="/0/@elements.11/@definition/@feature/@body/@in_/@iterators.0"/>
+                      </source>
+                    </arguments>
+                  </source>
+                  <arguments xsi:type="ocl:NavigationOrAttributeCallExp" location="59:75-59:87" name="I">
+                    <source xsi:type="ocl:VariableExp" location="59:75-59:85" referredVariable="/4"/>
+                  </arguments>
+                </arguments>
+              </body>
+              <iterators location="58:36-58:37" varName="i" variableExp="/0/@elements.11/@definition/@feature/@body/@in_/@body/@source/@source/@arguments.0 /0/@elements.11/@definition/@feature/@body/@in_/@body/@arguments.0/@source/@source/@source/@arguments.0/@source /0/@elements.11/@definition/@feature/@body/@in_/@body/@arguments.0/@source/@arguments.0/@source/@arguments.0"/>
+            </in_>
+          </body>
+        </feature>
+        <context_ location="55:8-55:29">
+          <context_ xsi:type="ocl:OclModelElement" location="55:16-55:29" name="Action" model="/1"/>
+        </context_>
+      </definition>
+    </elements>
+  </atl:Module>
+  <ocl:OclModel location="3:14-3:20" name="Pacman" elements="/0/@elements.0/@definition/@feature/@parameters.0/@type /0/@elements.0/@definition/@feature/@parameters.1/@type /0/@elements.2/@definition/@context_/@context_ /0/@elements.2/@definition/@feature/@body/@source/@source /0/@elements.3/@definition/@context_/@context_ /0/@elements.3/@definition/@feature/@body/@source/@source /0/@elements.4/@definition/@context_/@context_ /0/@elements.4/@definition/@feature/@body/@source/@source /0/@elements.5/@definition/@context_/@context_ /0/@elements.5/@definition/@feature/@body/@source/@source /0/@elements.6/@definition/@context_/@context_ /0/@elements.6/@definition/@feature/@body/@source/@source /0/@elements.7/@definition/@context_/@context_ /0/@elements.7/@definition/@feature/@body/@source/@source /0/@elements.7/@definition/@feature/@body/@body/@arguments.0/@arguments.0 /0/@elements.8/@definition/@context_/@context_ /0/@elements.8/@definition/@feature/@body/@source/@source /0/@elements.8/@definition/@feature/@body/@body/@arguments.0/@arguments.0 /0/@elements.9/@definition/@context_/@context_ /0/@elements.9/@definition/@feature/@body/@source/@source /0/@elements.10/@definition/@context_/@context_ /0/@elements.10/@definition/@feature/@body/@source/@source /0/@elements.10/@definition/@feature/@body/@body/@arguments.0/@body/@source/@arguments.0 /0/@elements.10/@definition/@feature/@body/@body/@arguments.0/@body/@arguments.0/@source/@arguments.0 /0/@elements.11/@definition/@context_/@context_ /0/@elements.11/@definition/@feature/@body/@variable/@type/@elementType /0/@elements.11/@definition/@feature/@body/@variable/@initExpression/@source/@source/@source" model="/0/@outModels.0 /0/@inModels.0"/>
+  <ocl:VariableDeclaration location="14:72-14:82" varName="thisModule" variableExp="/0/@elements.2/@definition/@feature/@body/@body/@body/@source"/>
+  <ocl:VariableDeclaration location="46:48-46:58" varName="thisModule" variableExp="/0/@elements.9/@definition/@feature/@body/@body/@arguments.0/@source"/>
+  <ocl:VariableDeclaration location="59:75-59:85" varName="thisModule" variableExp="/0/@elements.11/@definition/@feature/@body/@in_/@body/@arguments.0/@arguments.0/@source"/>
+</xmi:XMI>

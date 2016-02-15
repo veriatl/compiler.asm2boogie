@@ -1,0 +1,21 @@
+module a2b;
+create OUT : OUT from IN : IN;
+
+rule a2x{
+ from  a : IN!A
+ to x : OUT!X 
+}
+
+rule b2y extends a2x{
+ from  a : IN!B
+ to x : OUT!X (
+   name <- a.name
+ )
+}
+
+rule c2z extends a2x{
+ from  a : IN!C
+ to x : OUT!X (
+   name <- a.name
+ )
+}

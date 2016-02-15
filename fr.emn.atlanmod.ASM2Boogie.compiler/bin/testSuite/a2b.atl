@@ -1,0 +1,60 @@
+module a2b;
+
+-- @atlcompiler atl2010
+-- @path A=/A2B/A.ecore
+-- @path B=/A2B/B.ecore
+
+create OUT : B from IN : A;
+
+
+-- A3 never mapped
+-- r1 and  r2 overlapped on a1, silencely executable if model doesn't have one of the pattern.
+-- r3 rule cannnot terminate, TYPE MISMATCH
+-- the filter of r4 will never fulfill, yet still executable
+
+
+lazy rule r4 {
+   from
+     a1: A!A1
+	 (a1.assoc.oclIsUndefined())		-- lazy rule don't have filter, but syntax allow that.
+   to 
+     t : B!B2(
+		name <- a1.assoc.f + 'NEVER'
+	 )	
+ }
+
+rule r2 {
+	from
+		a1 : A!A1
+		(not a1.assoc.oclIsUndefined())
+	to
+		t : B!B1(
+			name <- 'r2',
+			--bssoc <- thisModule.r3(a1),	-- unsafty casting, notice the input type of rule r3
+			bssoc <- if a1.assoc.oclIsUndefined() then
+						thisModule.r4(a1)	-- unreachable
+					 else
+					 	thisModule.r3(a1)
+					 endif
+		)	
+}
+
+
+rule r1 {
+	from
+		a1 : A!A1
+	to
+		t : B!B1(
+		name <- 'r1'
+		)
+}
+
+lazy rule r3 {
+   from
+     a2: A!A2
+   to 
+     t : B!B2(
+		name <- thisModule.r3(a2), 		--  type mismatch
+		bssoc <- 'r3'			-- b2 even don't have bassoc attribute, and type mismatch
+	 )	
+ }
