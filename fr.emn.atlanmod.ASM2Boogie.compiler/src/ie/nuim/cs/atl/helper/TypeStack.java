@@ -161,8 +161,13 @@ public class TypeStack{
 				case "pop":	
 					stk.pop();
 					break;	
-				case "swap":	
+				case "swap":{	
+					ASMType top = stk.pop();
+					ASMType secondtop = stk.pop();
+					stk.push(top);
+					stk.push(secondtop);
 					break;	
+				}
 				case "dup":	{
 					ASMType top = stk.pop();
 					stk.push(top);

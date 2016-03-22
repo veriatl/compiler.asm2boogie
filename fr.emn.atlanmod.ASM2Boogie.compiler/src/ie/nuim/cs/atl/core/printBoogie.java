@@ -437,6 +437,11 @@ public class printBoogie {
 				break;
 			case "if":
 				System.out.printf("var cond#%d: bool;\n", ln);
+				break;
+			case "call":{
+				System.out.printf("var obj#%d: bool;\n", ln);
+				break;
+			}	
 			default:
 				break;
 			}
